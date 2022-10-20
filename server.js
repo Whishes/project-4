@@ -4,6 +4,7 @@ require("dotenv").config();
 const port = process.env.PORT || 3001;
 const fs = require("fs");
 const sessionController = require("./controllers/session");
+const signupController = require("./controllers/signup");
 
 // file imports
 const db = require("./database/db");
@@ -27,11 +28,12 @@ app.use(
 
 //routes
 app.use("/api/session", sessionController);
+app.use("/api/signup", signupController);
 app.get("/api/healthcheck", (req, res) => res.send({ code: 200 }));
-app.get("*", (req, res) => {
-	res.setHeader("content-type", "text/html");
-	fs.createReadStream(`${__dirname}/client/build/index.html`).pipe(res);
-});
+// app.get("*", (req, res) => {
+// 	res.setHeader("content-type", "text/html");
+// 	fs.createReadStream(`${__dirname}/client/build/index.html`).pipe(res);
+// });
 
 // start server + check to make sure api works
 app.listen(port, () => console.log(`Listening at localhost:${port}`));

@@ -20,12 +20,12 @@ const RegisterPage = () => {
 		};
 
 		axios
-			.post("api/signup", data)
+			.post("/api/signup", data)
 			.then(() => {
 				window.location = "/login";
 			})
 			.catch((err) => {
-				//console.log(err);
+				console.log(err);
 				alert(err.response.data.message);
 			});
 	};

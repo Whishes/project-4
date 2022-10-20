@@ -19,9 +19,9 @@ router.post("/", (req, res) => {
 				.status(400)
 				.json({ message: "The email and/or password are not correct" });
 		}
-		//console.log(userRows);
+		console.log(userRows);
 		const user = userRows[0];
-		const hashedPassword = user.password;
+		const hashedPassword = user.hashed_password;
 
 		if (isValidPassword(password, hashedPassword)) {
 			req.session.userid = user.id;

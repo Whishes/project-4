@@ -18,7 +18,7 @@ const LoginPage = () => {
 		};
 
 		axios
-			.post("api/session", data)
+			.post("/api/session", data)
 			.then(() => {
 				window.location = "/";
 			})

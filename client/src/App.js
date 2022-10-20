@@ -13,9 +13,9 @@ function App() {
 	//
 	useEffect(() => {
 		axios
-			.get("http://localhost:3001/api/session")
+			.get("/api/session")
 			.then((response) => {
-				console.log(response);
+				//console.log(response);
 				setLoggedIn(true);
 			})
 			.catch((err) => setLoggedIn(false));
@@ -29,7 +29,7 @@ function App() {
 	};
 
 	return (
-		<div className="App" style={!loggedIn && backgroundStyles}>
+		<div className="App" style={backgroundStyles}>
 			<NavBar loggedIn={loggedIn} />
 			<Routes>
 				<Route path="/" element={<HomePage loggedIn={loggedIn} />} />
