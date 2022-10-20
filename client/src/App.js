@@ -5,6 +5,7 @@ import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import NavBar from "./NavBar";
 import HomePage from "./HomePage";
+import BackgroundImage from "./images/map1.png";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -20,8 +21,15 @@ function App() {
 			.catch((err) => setLoggedIn(false));
 	}, [loggedIn]);
 	//
+	const backgroundStyles = {
+		backgroundImage: `url(${BackgroundImage})`,
+		backgroundPosition: "center",
+		backgroundSize: "cover",
+		backgroundRepeat: "no-repeat",
+	};
+
 	return (
-		<div className="App">
+		<div className="App" style={!loggedIn && backgroundStyles}>
 			<NavBar loggedIn={loggedIn} />
 			<Routes>
 				<Route path="/" element={<HomePage loggedIn={loggedIn} />} />
