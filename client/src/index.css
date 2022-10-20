@@ -1,6 +1,6 @@
 :root {
-  --primary-theme: #228C22;
-  --primary-font: white;
+  --primary-theme: #59CB47;
+  --primary-font: #FBFBFB;
 }
 
 * {
@@ -17,12 +17,22 @@ body {
   color: var(--primary-font);
 }
 
+button {
+  all:unset;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 #root {
   height: 100%;
   width: 100%;
 }
 
+
 .App {
   height: 100%;
   width: 100%;
 }
+

@@ -1,25 +1,26 @@
 header {
     display: flex;
     align-items: center;
-    justify-content:flex-end;
+    justify-content:space-between;
     height: 10vh;
     padding: 0 1em;
+    background-color: var(--primary-font);
+    color: var(--primary-theme);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 nav a{
     text-decoration: none;
     font-size: 1.5em;
+    color: var(--primary-theme);
 }
 
-nav a:visited {
-    color: var(--primary-font);
-}
 
 nav a:hover {
     text-decoration: underline;
 }
 
-header nav {
+header .home-nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -32,16 +33,15 @@ header nav {
     gap: 2em;
     transition: 1s;
     transform: translateY(-100vh);
-    background-color: var(--primary-theme);
+    background-color: var(--primary-font);
 }
 
 header .nav-btn {
-    cursor: pointer;
     background: none;
     border: none;
     padding: 5px;
     font-size: 1.5em;
-    color: var(--primary-font);
+    /* color: var(--primary-font); */
 }
 
 header .responsive_nav {

@@ -1,20 +1,42 @@
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaDoorOpen } from "react-icons/fa";
+import axios from "axios";
 
 const NavBar = ({ loggedIn }) => {
 	const navRef = useRef();
 	const showNavBar = () => {
 		navRef.current.classList.toggle("responsive_nav");
 	};
+	const logOut = () => {
+		axios
+			.delete("/api/session")
+			.then((response) => {
+				//console.log(response);
+				window.location.href = "/";
+			})
+			.catch((err) => {
+				//console.log(err)
+				alert("log out unsuccessful");
+			});
+	};
+
 	return (
 		<header>
 			{loggedIn ? (
-				<h1>Logged In bar</h1>
+				<>
+					<h1>Logged In bar</h1>
+					<nav>
+						<button className="nav-btn" onClick={logOut}>
+							<FaDoorOpen />
+						</button>
+					</nav>
+				</>
 			) : (
 				<>
-					<nav ref={navRef}>
+					<h1>yo</h1>
+					<nav className="home-nav" ref={navRef}>
 						<Link to="/" onClick={showNavBar}>
 							Home
 						</Link>

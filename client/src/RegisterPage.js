@@ -22,7 +22,7 @@ const RegisterPage = () => {
 		axios
 			.post("/api/signup", data)
 			.then(() => {
-				window.location = "/login";
+				window.location.href = "/login";
 			})
 			.catch((err) => {
 				console.log(err);

@@ -20,7 +20,7 @@ const LoginPage = () => {
 		axios
 			.post("/api/session", data)
 			.then(() => {
-				window.location = "/";
+				window.location.href = "/";
 			})
 			.catch((err) => {
 				//console.log(err);
