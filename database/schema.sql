@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS farm;
 DROP TABLE IF EXISTS pokemon_in_farm;
 DROP TABLE IF EXISTS users_collection;
 DROP TABLE IF EXISTS pokemon_collected;
-DROP TABLE IF EXISTS pokedex;
+/* DROP TABLE IF EXISTS pokedex; */
 
 /* CREATE NEW TABLES */
 CREATE TABLE users (
@@ -20,6 +20,7 @@ CREATE TABLE farm (
     user_id INT NOT NULL,
     currency INT DEFAULT 5000,
     total_c_pm INT DEFAULT 0,
+    c_collected TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     egg_cost INT DEFAULT 5000
 );
 

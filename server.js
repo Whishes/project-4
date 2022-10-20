@@ -3,6 +3,7 @@ const app = express();
 require("dotenv").config();
 const port = process.env.PORT || 3001;
 const fs = require("fs");
+const sessionController = require("./controllers/session");
 
 // file imports
 const db = require("./database/db");
@@ -26,11 +27,11 @@ app.use(
 
 //routes
 app.use("/api/session", sessionController);
+app.get("/api/healthcheck", (req, res) => res.send({ code: 200 }));
 app.get("*", (req, res) => {
 	res.setHeader("content-type", "text/html");
 	fs.createReadStream(`${__dirname}/client/build/index.html`).pipe(res);
 });
 
 // start server + check to make sure api works
-app.get("/api/healthcheck", (req, res) => res.statusCode(200));
 app.listen(port, () => console.log(`Listening at localhost:${port}`));
