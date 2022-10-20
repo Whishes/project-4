@@ -28,7 +28,11 @@ const NavBar = ({ loggedIn }) => {
 				<>
 					<h1>Logged In bar</h1>
 					<nav>
-						<button className="nav-btn" onClick={logOut}>
+						<button
+							className="nav-btn"
+							onClick={logOut}
+							data-testid="logOutBtn"
+						>
 							<FaDoorOpen />
 						</button>
 					</nav>
@@ -36,7 +40,7 @@ const NavBar = ({ loggedIn }) => {
 			) : (
 				<>
 					<h1>yo</h1>
-					<nav className="home-nav" ref={navRef}>
+					<nav className="home-nav" ref={navRef} data-testid="home-nav">
 						<Link to="/" onClick={showNavBar}>
 							Home
 						</Link>

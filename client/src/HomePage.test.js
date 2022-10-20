@@ -9,6 +9,7 @@ test("HomePage component renders correctly when the user isn't logged in", () =>
 	expect(mainHeaderElement).toBeInTheDocument();
 	expect(secondaryHeaderElement).toBeInTheDocument();
 });
+
 test("HomePage component renders correctly when the user is logged in", () => {
 	render(<HomePage loggedIn={true} />);
 	expect(screen.queryByText("Pokemon")).not.toBeInTheDocument();
