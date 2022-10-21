@@ -1,5 +1,6 @@
 /* DELETE TABLES FOR CLEAN CREATION*/
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS session;
 DROP TABLE IF EXISTS farm;
 DROP TABLE IF EXISTS pokemon_in_farm;
 DROP TABLE IF EXISTS users_collection;
@@ -16,7 +17,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE farm (
-    id SERIAL PRIMARY KEY,
+    farm_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     currency INT DEFAULT 5000,
     total_c_pm INT DEFAULT 0,
@@ -58,3 +59,8 @@ CREATE TABLE pokedex (
     exp_required INT,
     currency_pm FLOAT NOT NULL
 );
+
+-- SELECT users.id, username, email, created_at, farm.id, currency, total_c_pm, c_collected, egg_cost
+-- FROM users
+-- INNER JOIN farm ON users.id = farm.user_id
+-- WHERE users.id = 1;

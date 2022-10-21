@@ -34,23 +34,10 @@ router.post("/", (req, res) => {
 	});
 });
 
-// check if logged in
-router.get("/", (req, res) => {
-	//console.log("session");
-	const email = req.session.email;
-	const userId = req.session.userid;
-
-	if (!email || !userId) {
-		return res.status(401).send({ message: "Not logged in" });
-	} else {
-		return res.json({ id: userId, email: email });
-	}
-});
-
 // logging out
 router.delete("/", (req, res) => {
 	req.session.destroy();
-	return res.status(204).json({});
+	return res.status(204).json({ message: "logged out successfully" });
 });
 
 module.exports = router;
