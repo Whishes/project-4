@@ -11,7 +11,11 @@ test("HomePage component renders correctly when the user isn't logged in", () =>
 });
 
 test("HomePage component renders correctly when the user is logged in", () => {
-	render(<HomePage loggedIn={true} />);
+	const farmData = {
+		farm_id: 1,
+	};
+
+	render(<HomePage loggedIn={true} farmData={farmData} />);
 	expect(screen.queryByText("Pokemon")).not.toBeInTheDocument();
 	expect(screen.queryByText("Rancher")).not.toBeInTheDocument();
 });
