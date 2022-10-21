@@ -1,12 +1,12 @@
 import "./HomePage.css";
 import Farm from "./Farm";
 
-const HomePage = ({ loggedIn, user }) => {
+const HomePage = ({ loggedIn, user, farmData }) => {
 	return (
 		<>
 			{loggedIn ? (
 				<div>
-					<Farm user={user} />
+					<Farm user={user} farmData={farmData} />
 				</div>
 			) : (
 				<div id="home-container">

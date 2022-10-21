@@ -13,7 +13,9 @@ function App() {
 	const [farmData, setFarmData] = useState(null);
 	//
 	useEffect(() => {
-		if (loggedIn) return;
+		if (loggedIn) {
+			return;
+		}
 		axios
 			.get("/api/user")
 			.then((response) => {
@@ -51,11 +53,13 @@ function App() {
 
 	return (
 		<div className="App" style={backgroundStyles}>
-			<NavBar loggedIn={loggedIn} />
+			<NavBar loggedIn={loggedIn} farmData={farmData} />
 			<Routes>
 				<Route
 					path="/"
-					element={<HomePage loggedIn={loggedIn} user={user} />}
+					element={
+						<HomePage loggedIn={loggedIn} user={user} farmData={farmData} />
+					}
 				/>
 				{!loggedIn && <Route path="/login" element={<LoginPage />} />}
 				{!loggedIn && <Route path="/register" element={<RegisterPage />} />}

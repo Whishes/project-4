@@ -64,3 +64,8 @@ CREATE TABLE pokedex (
 -- FROM users
 -- INNER JOIN farm ON users.id = farm.user_id
 -- WHERE users.id = 1;
+
+-- SELECT *
+-- FROM pokemon_in_farm
+-- INNER JOIN pokedex ON pokemon_in_farm.dex_id = pokedex.dex_id
+-- WHERE pokemon_in_farm.farm_id = $1;
