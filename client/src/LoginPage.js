@@ -29,7 +29,7 @@ const LoginPage = () => {
 	};
 
 	return (
-		<div id="login-container">
+		<div id="login-container" data-testid="login-container">
 			<h1>Login</h1>
 			<form onSubmit={formSubmit} method="post">
 				<div>
@@ -40,6 +40,7 @@ const LoginPage = () => {
 						name="email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
+						data-testid="email-input"
 					></input>
 				</div>
 				<div>
@@ -50,6 +51,7 @@ const LoginPage = () => {
 						name="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
+						data-testid="password-input"
 					></input>
 				</div>
 				<button type="submit">Submit</button>

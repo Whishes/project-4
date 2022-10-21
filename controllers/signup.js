@@ -5,7 +5,7 @@ const Signup = require("../models/signup");
 
 // signup stuff
 router.post("/", (req, res) => {
-	console.log(req.body);
+	//console.log(req.body);
 	let { username, email, password } = req.body;
 	username = username.toLowerCase();
 	email = email.toLowerCase();
@@ -19,7 +19,7 @@ router.post("/", (req, res) => {
 	Signup.newAcc(username, email, hashedPassword)
 		.then(() => res.status(200).json({ success: true }))
 		.catch((err) => {
-			console.log(err);
+			//console.log(err);
 			if (err.code === "23505") {
 				res
 					.status(400)

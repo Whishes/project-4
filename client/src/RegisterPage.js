@@ -25,13 +25,13 @@ const RegisterPage = () => {
 				window.location.href = "/login";
 			})
 			.catch((err) => {
-				console.log(err);
+				//console.log(err);
 				alert(err.response.data.message);
 			});
 	};
 
 	return (
-		<div id="login-container">
+		<div id="login-container" data-testid="register-container">
 			<h1>Register</h1>
 			<form onSubmit={formSubmit} method="post">
 				<div>
@@ -42,6 +42,7 @@ const RegisterPage = () => {
 						name="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
+						data-testid="username-input"
 					></input>
 				</div>
 				<div>
@@ -52,6 +53,7 @@ const RegisterPage = () => {
 						name="email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
+						data-testid="email-input"
 					></input>
 				</div>
 				<div>
@@ -62,6 +64,7 @@ const RegisterPage = () => {
 						name="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
+						data-testid="password-input"
 					></input>
 				</div>
 				<button type="submit">Submit</button>
