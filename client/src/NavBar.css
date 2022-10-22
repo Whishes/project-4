@@ -54,3 +54,7 @@ header .nav-close-btn {
     right: 0.7em;
 }
 
+nav > button > img {
+    width: 20px;
+    height: 21px;
+}

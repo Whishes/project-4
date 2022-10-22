@@ -1,10 +1,12 @@
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { FaBars, FaTimes, FaDoorOpen } from "react-icons/fa";
+import { FaBars, FaTimes, FaDoorOpen, FaBook } from "react-icons/fa";
+import egg from "./images/egg.png";
 import axios from "axios";
 
-const NavBar = ({ loggedIn }) => {
+const NavBar = ({ loggedIn, farmData }) => {
+	console.log(farmData);
 	const navRef = useRef();
 	const showNavBar = () => {
 		navRef.current.classList.toggle("responsive_nav");
@@ -22,12 +24,26 @@ const NavBar = ({ loggedIn }) => {
 			});
 	};
 
+	const collectionClick = () => {
+		console.log("collection button has been clicked");
+	};
+
+	const eggClick = () => {
+		console.log("egg button has been clicked");
+	};
+
 	return (
 		<header>
 			{loggedIn ? (
 				<>
-					<h1>Logged In bar</h1>
+					<p>${farmData.currency}</p>
 					<nav>
+						<button className="nav-btn" onClick={() => eggClick()}>
+							<img src={egg} alt="egg"></img>
+						</button>
+						<button className="nav-btn" onClick={() => collectionClick()}>
+							<FaBook />
+						</button>
 						<button
 							className="nav-btn"
 							onClick={logOut}
