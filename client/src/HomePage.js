@@ -14,7 +14,7 @@ const Pokemon = ({ pokemon }) => {
 	};
 
 	return (
-		<div className="fence">
+		<div className="fence" data-testid="pokemon-cage">
 			<img src={back_fence} className="back_fence" alt={"back fence"}></img>
 			<img
 				src={pokemon.gif_link}
@@ -51,7 +51,7 @@ const HomePage = ({ user, farmData }) => {
 
 	const addNewEgg = () => {
 		setModalIsOpen(false);
-		console.log("new egg added");
+		//console.log("new egg added");
 		axios
 			.post(`/api/pokemon/`, { farm_id: farmData.farm_id })
 			.then((response) => {

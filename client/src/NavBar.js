@@ -29,19 +29,31 @@ const NavBar = ({ loggedIn, farmData }) => {
 	};
 
 	const eggClick = () => {
-		console.log("egg button has been clicked");
+		//console.log("egg button has been clicked");
+		const check = window.confirm(
+			`Are you sure you want to buy an egg for $${farmData.egg_cost}?`
+		);
+		console.log(check);
 	};
 
 	return (
 		<header>
 			{loggedIn ? (
 				<>
-					<p>${farmData.currency}</p>
+					<p data-testid="currency-amt">${farmData.currency}</p>
 					<nav>
-						<button className="nav-btn" onClick={() => eggClick()}>
+						<button
+							className="nav-btn"
+							onClick={() => eggClick()}
+							data-testid="eggBtn"
+						>
 							<img src={egg} alt="egg"></img>
 						</button>
-						<button className="nav-btn" onClick={() => collectionClick()}>
+						<button
+							className="nav-btn"
+							onClick={() => collectionClick()}
+							data-testid="collectionBtn"
+						>
 							<FaBook />
 						</button>
 						<button
