@@ -7,6 +7,17 @@ import NavBar from "./NavBar";
 import HomePage from "./HomePage";
 import BackgroundImage from "./images/map1.png";
 
+const TitleScreen = () => {
+	return (
+		<div id="home-container">
+			<div id="home-titles">
+				<h1>Pokemon</h1>
+				<h2>Rancher</h2>
+			</div>
+		</div>
+	);
+};
+
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [user, setUser] = useState(null);
@@ -55,12 +66,16 @@ function App() {
 		<div className="App" style={backgroundStyles}>
 			<NavBar loggedIn={loggedIn} farmData={farmData} />
 			<Routes>
-				<Route
-					path="/"
-					element={
-						<HomePage loggedIn={loggedIn} user={user} farmData={farmData} />
-					}
-				/>
+				{loggedIn ? (
+					<Route
+						path="/"
+						element={
+							<HomePage loggedIn={loggedIn} user={user} farmData={farmData} />
+						}
+					/>
+				) : (
+					<Route path="/" element={<TitleScreen />} />
+				)}
 				{!loggedIn && <Route path="/login" element={<LoginPage />} />}
 				{!loggedIn && <Route path="/register" element={<RegisterPage />} />}
 			</Routes>

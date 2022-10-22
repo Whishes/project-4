@@ -20,6 +20,8 @@ const farmData = {
 };
 
 test("Farm component renders correctly", () => {
+	mockAxios.onGet("/api/farm/1").reply(200, []);
+
 	render(<Farm farmData={farmData} />);
 	const container = screen.getByTestId("farm-container");
 
@@ -27,15 +29,12 @@ test("Farm component renders correctly", () => {
 });
 
 test("Farm components render the correct content when no pokemon in farm can be found", async () => {
-	const farmData = {
-		farm_id: 1,
-	};
 	mockAxios.onGet("/api/farm/1").reply(200, []);
 
 	await act(() => render(<Farm farmData={farmData} />));
 
 	const elderly_man = screen.getByTestId("elderly_man");
-	expect(mockAxios).toBeInTheDocument();
+	//expect(mockAxios).toBeInTheDocument();
 	expect(mockAxios.history.get.length).toBe(1);
 	expect(elderly_man).toBeInTheDocument();
 });

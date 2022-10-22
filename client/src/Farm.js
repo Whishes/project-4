@@ -8,6 +8,7 @@ import { RiCloseLine } from "react-icons/ri";
 const Farm = ({ user, farmData }) => {
 	const [pokemonData, setPokemonData] = useState([]);
 	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const [loading, setLoading] = useState(true);
 	// console.log(farmData);
 	// console.log(user);
 	useEffect(() => {
@@ -15,6 +16,7 @@ const Farm = ({ user, farmData }) => {
 			.get(`/api/farm/${farmData.farm_id}`)
 			.then((response) => {
 				console.log("here: ", response.data);
+				setLoading(false);
 				if (response.data.length >= 1) {
 					setPokemonData(response.data);
 				}
@@ -24,6 +26,7 @@ const Farm = ({ user, farmData }) => {
 
 	return (
 		<div id="farm-container" data-testid="farm-container">
+			{loading && <p>loading</p>}
 			{pokemonData.length >= 1 ? (
 				<h1>Pokemon Present</h1>
 			) : (
