@@ -6,17 +6,7 @@ import RegisterPage from "./RegisterPage";
 import NavBar from "./NavBar";
 import HomePage from "./HomePage";
 import BackgroundImage from "./images/map1.png";
-
-const TitleScreen = () => {
-	return (
-		<div id="home-container">
-			<div id="home-titles">
-				<h1>Pokemon</h1>
-				<h2>Rancher</h2>
-			</div>
-		</div>
-	);
-};
+import TitleScreen from "./TitleScreen";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
