@@ -2,8 +2,32 @@ import "./HomePage.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import egg_man from "./images/Egg-man.png";
+import back_fence from "./images/back_fench.png";
+import front_fence from "./images/front_fence.png";
+import sign_post from "./images/signPost.png";
 import exclamation from "./images/Exclamation.png";
 import { RiCloseLine } from "react-icons/ri";
+
+const Pokemon = ({ pokemon }) => {
+	const signClick = () => {
+		console.log("sign has been clicked on pokemon id: ", pokemon.id);
+	};
+
+	return (
+		<div className="fence">
+			<img src={back_fence} className="back_fence" alt={"back fence"}></img>
+			<img
+				src={pokemon.gif_link}
+				alt={pokemon.name}
+				className="pokemon_img"
+			></img>
+			<img src={front_fence} className="front_fence" alt={"front fence"}></img>
+			<button className="sign_post" onClick={() => signClick()}>
+				<img src={sign_post} alt={"sign post"}></img>
+			</button>
+		</div>
+	);
+};
 
 const HomePage = ({ user, farmData }) => {
 	const [pokemonData, setPokemonData] = useState([]);
@@ -14,9 +38,9 @@ const HomePage = ({ user, farmData }) => {
 	useEffect(() => {
 		const id = farmData.farm_id;
 		axios
-			.get(`/api/farm/${id}`)
+			.get(`/api/pokemon/${id}`)
 			.then((response) => {
-				//console.log("here: ", response.data);
+				console.log("here: ", response.data);
 				setLoading(false);
 				if (response.data.length >= 1) {
 					setPokemonData(response.data);
@@ -25,11 +49,24 @@ const HomePage = ({ user, farmData }) => {
 			.catch((err) => console.log(err));
 	}, []);
 
+	const addNewEgg = () => {
+		setModalIsOpen(false);
+		console.log("new egg added");
+		axios
+			.post(`/api/pokemon/`, { farm_id: farmData.farm_id })
+			.then((response) => {
+				console.log(response.data);
+			})
+			.catch((err) => console.log(err));
+	};
+
 	return (
 		<div id="farm-container" data-testid="farm-container">
 			{loading && <p>loading</p>}
 			{pokemonData.length >= 1 ? (
-				<h1>Pokemon Present</h1>
+				pokemonData.map((pokemon) => {
+					return <Pokemon key={pokemon.id} pokemon={pokemon} />;
+				})
 			) : (
 				<div id="man-container">
 					{modalIsOpen ? (
@@ -52,10 +89,7 @@ const HomePage = ({ user, farmData }) => {
 									</div>
 									<div className="modalActions">
 										<div className="actionsContainer">
-											<button
-												className="yesBtn"
-												onClick={() => setModalIsOpen(false)}
-											>
+											<button className="yesBtn" onClick={() => addNewEgg()}>
 												Yes!
 											</button>
 										</div>

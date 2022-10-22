@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS farm;
 DROP TABLE IF EXISTS pokemon_in_farm;
 DROP TABLE IF EXISTS users_collection;
 DROP TABLE IF EXISTS pokemon_collected;
-/* DROP TABLE IF EXISTS pokedex; */
+-- DROP TABLE IF EXISTS pokedex;
 
 /* CREATE NEW TABLES */
 CREATE TABLE users (
@@ -46,16 +46,16 @@ CREATE TABLE pokemon_collected (
 );
 
 CREATE TABLE pokedex (
-    dex_id INT NOT NULL,
-    name TEXT NOT NULL,
+    dex_id INT NOT NULL UNIQUE,
+    name TEXT NOT NULL UNIQUE,
     evo_stage TEXT,
     evo_pokemon INT,
     type_1 TEXT NOT NULL,
     type_2 TEXT,
     description TEXT NOT NULL,
     egg_group TEXT,
-    img_link TEXT NOT NULL,
-    gif_link TEXT NOT NULL,
+    img_link TEXT NOT NULL UNIQUE,
+    gif_link TEXT NOT NULL UNIQUE,
     exp_required INT,
     currency_pm FLOAT NOT NULL
 );

@@ -1,8 +1,10 @@
 #farm-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     margin: 1em;
+    flex-wrap: wrap;
+    gap:1em;
 }
 
 #man-container {
@@ -134,4 +136,38 @@
   box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
   transform: translateY(-5px);
   background: #13f571;
+}
+
+.fence {
+  display: flex;
+  flex-direction: column;
+  width: 64px;
+  height: 75px;
+}
+
+.back_fence {
+  /* position: relative; */
+  height: 43px;
+  width: 64px;
+}
+
+.pokemon_img {
+  position: relative;
+  bottom: 42px;
+  width:64px;
+}
+
+.front_fence {
+  position: relative;
+  bottom: 64px;
+  height: 22px;
+  width: 64px;
+}
+
+.sign_post {
+  position: relative;
+  width: 16px;
+  height: 32px;
+  left: 48px;
+  bottom: 80px;
 }
