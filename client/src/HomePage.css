@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: space-evenly;
     margin: 1em;
+    margin-top: 3em;
     flex-wrap: wrap;
     gap:1em;
 }
@@ -175,4 +176,13 @@
 
 .pokemon-name::first-letter {
   text-transform: uppercase;
+}
+
+.evo_indicator {
+  animation-duration: 2s;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  left: 16px;
+  bottom: 192px
 }

@@ -6,6 +6,7 @@ import NewGame from "./NewGame";
 import back_fence from "./images/back_fench.png";
 import front_fence from "./images/front_fence.png";
 import sign_post from "./images/signPost.png";
+import arrow from "./images/Arrow.png";
 import { RiCloseLine } from "react-icons/ri";
 
 // {
@@ -97,24 +98,29 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 		//console.log("sign has been clicked on pokemon id: ", pokemon.id);
 		const newExpValue = getNewExp(pokemon.date_updated, pokemon.exp_required);
 		setLoading(true);
-		axios
-			.post(`/api/pokemon/exp/${pokemon.id}`, {
-				user_id: user.id,
-				farm_id: pokemon.farm_id,
-				new_exp: newExpValue,
-			})
-			.then((response) => {
-				//console.log(response);
-				setLoading(false);
-				pokemon.current_exp = newExpValue;
-				setModalIsOpen(true);
-			})
-			.catch((err) => {
-				console.log(
-					"log ~ file: HomePage.js ~ line 104 ~ axios.patch ~ err",
-					err
-				);
-			});
+		if (newExpValue !== pokemon.current_exp) {
+			axios
+				.post(`/api/pokemon/exp/${pokemon.id}`, {
+					user_id: user.id,
+					farm_id: pokemon.farm_id,
+					new_exp: newExpValue,
+				})
+				.then((response) => {
+					//console.log(response);
+					setLoading(false);
+					pokemon.current_exp = newExpValue;
+					setModalIsOpen(true);
+				})
+				.catch((err) => {
+					console.log(
+						"log ~ file: HomePage.js ~ line 104 ~ axios.patch ~ err",
+						err
+					);
+				});
+		} else {
+			setLoading(false);
+			setModalIsOpen(true);
+		}
 	};
 
 	return (
@@ -132,6 +138,13 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 			<button className="sign_post" onClick={() => signClick()}>
 				<img src={sign_post} alt={"sign post"}></img>
 			</button>
+			{pokemon.current_exp >= pokemon.exp_required && (
+				<img
+					className="bounce evo_indicator"
+					src={arrow}
+					alt="evolution arrow"
+				></img>
+			)}
 		</div>
 	);
 };
