@@ -78,19 +78,24 @@ const SignModal = ({ setModalIsOpen, pokemon }) => {
 const Pokemon = ({ pokemon }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	// console.log(pokemon);
-	const getTimeDifference = (inputDate) => {
+	const getNewExp = (inputDate, maxExp) => {
+		const passiveExpRate = 0.3;
+		//
 		const pokemonDate = new Date(inputDate);
 		const currentDate = Date.now();
-		const diffTime = Math.abs(currentDate - pokemonDate);
-		return Math.ceil(diffTime / (1000 * 60));
+		const diffTimeInMilli = Math.abs(currentDate - pokemonDate);
+		const diffInSecs = Math.ceil(diffTimeInMilli / (1000 * 60));
+		const newExp = parseInt(diffInSecs * passiveExpRate);
+
+		if (newExp >= maxExp) {
+			return maxExp;
+		}
+		return newExp;
 	};
-	//console.log(getTimeDifference(pokemon.date_updated) * 0.3);
 
 	const signClick = () => {
 		//console.log("sign has been clicked on pokemon id: ", pokemon.id);
-		pokemon.current_exp = parseInt(
-			getTimeDifference(pokemon.date_updated) * 0.3
-		);
+		pokemon.current_exp = getNewExp(pokemon.date_updated, pokemon.exp_required);
 		setModalIsOpen(true);
 	};
 
