@@ -19,12 +19,8 @@ body {
 
 button {
   all:unset;
-}
-
-button:hover {
   cursor: pointer;
 }
-
 
 #root {
   height: 100%;
