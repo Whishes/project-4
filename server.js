@@ -7,6 +7,7 @@ const sessionController = require("./controllers/session");
 const userController = require("./controllers/user");
 const farmController = require("./controllers/farm");
 const pokemonController = require("./controllers/pokemon");
+const pokedexController = require("./controllers/pokedex");
 
 // file imports
 const db = require("./database/db");
@@ -29,6 +30,7 @@ app.use(
 );
 
 //routes
+app.use("/api/pokedex", pokedexController);
 app.use("/api/pokemon", pokemonController);
 app.use("/api/session", sessionController);
 app.use("/api/user", userController);

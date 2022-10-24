@@ -30,12 +30,15 @@ import { RiCloseLine } from "react-icons/ri";
 // }
 
 const SignModal = ({ setModalIsOpen, pokemon }) => {
+	console.log(pokemon);
 	const barWidth =
 		pokemon.current_exp > 0
 			? (pokemon.current_exp / pokemon.exp_required) * 100
 			: 0;
 
-	// console.log(pokemon);
+	const evolvePokemon = () => {
+		return;
+	};
 
 	return (
 		<>
@@ -51,6 +54,16 @@ const SignModal = ({ setModalIsOpen, pokemon }) => {
 						<button className="closeBtn" onClick={() => setModalIsOpen(false)}>
 							<RiCloseLine style={{ marginBottom: "-3px" }} />
 						</button>
+						{barWidth >= 100 && pokemon.evo_pokemon && (
+							<button className="yesBtn" onClick={() => evolvePokemon}>
+								Evolve
+							</button>
+						)}
+						{barWidth >= 100 && pokemon.evo_stage === "egg" && (
+							<button className="yesBtn" onClick={() => evolvePokemon}>
+								Hatch
+							</button>
+						)}
 						<div className="exp-section">
 							<h4>Exp:</h4>
 							<div className="bar-section">
@@ -138,13 +151,14 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 			<button className="sign_post" onClick={() => signClick()}>
 				<img src={sign_post} alt={"sign post"}></img>
 			</button>
-			{pokemon.current_exp >= pokemon.exp_required && (
-				<img
-					className="bounce evo_indicator"
-					src={arrow}
-					alt="evolution arrow"
-				></img>
-			)}
+			{(pokemon.current_exp >= pokemon.exp_required && pokemon.evo_pokemon) ||
+				(pokemon.evo_stage === "egg" && (
+					<img
+						className="bounce evo_indicator"
+						src={arrow}
+						alt="evolution arrow"
+					></img>
+				))}
 		</div>
 	);
 };
