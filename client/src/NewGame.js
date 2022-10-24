@@ -4,14 +4,14 @@ import egg_man from "./images/Egg-man.png";
 import { useState } from "react";
 import axios from "axios";
 
-const NewGame = ({ farmId }) => {
+const NewGame = ({ farmId, user_id }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 
 	const addNewEgg = () => {
 		setModalIsOpen(false);
 		//console.log("new egg added");
 		axios
-			.post(`/api/pokemon/`, { farm_id: farmId })
+			.post(`/api/pokemon/`, { farm_id: farmId, user_id: user_id })
 			.then((response) => {
 				console.log(response.data);
 			})

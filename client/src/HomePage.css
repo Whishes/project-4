@@ -172,3 +172,7 @@
   bottom: 80px;
   cursor: pointer;
 }
+
+.pokemon-name::first-letter {
+  text-transform: uppercase;
+}

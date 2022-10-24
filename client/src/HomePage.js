@@ -46,7 +46,7 @@ const SignModal = ({ setModalIsOpen, pokemon }) => {
 						<div className="vl" />
 					</div>
 					<div className="details-section">
-						<h1>{pokemon.name}</h1>
+						<h1 className="pokemon-name">{pokemon.name}</h1>
 						<button className="closeBtn" onClick={() => setModalIsOpen(false)}>
 							<RiCloseLine style={{ marginBottom: "-3px" }} />
 						</button>
@@ -75,7 +75,7 @@ const SignModal = ({ setModalIsOpen, pokemon }) => {
 	);
 };
 
-const Pokemon = ({ pokemon }) => {
+const Pokemon = ({ pokemon, user, setLoading }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	// console.log(pokemon);
 	const getNewExp = (inputDate, maxExp) => {
@@ -95,8 +95,26 @@ const Pokemon = ({ pokemon }) => {
 
 	const signClick = () => {
 		//console.log("sign has been clicked on pokemon id: ", pokemon.id);
-		pokemon.current_exp = getNewExp(pokemon.date_updated, pokemon.exp_required);
-		setModalIsOpen(true);
+		const newExpValue = getNewExp(pokemon.date_updated, pokemon.exp_required);
+		setLoading(true);
+		axios
+			.post(`/api/pokemon/exp/${pokemon.id}`, {
+				user_id: user.id,
+				farm_id: pokemon.farm_id,
+				new_exp: newExpValue,
+			})
+			.then((response) => {
+				//console.log(response);
+				setLoading(false);
+				pokemon.current_exp = newExpValue;
+				setModalIsOpen(true);
+			})
+			.catch((err) => {
+				console.log(
+					"log ~ file: HomePage.js ~ line 104 ~ axios.patch ~ err",
+					err
+				);
+			});
 	};
 
 	return (
@@ -143,10 +161,17 @@ const HomePage = ({ user, farmData }) => {
 
 			{pokemonData.length >= 1 ? (
 				pokemonData.map((pokemon) => {
-					return <Pokemon key={pokemon.id} pokemon={pokemon} />;
+					return (
+						<Pokemon
+							key={pokemon.id}
+							pokemon={pokemon}
+							user={user}
+							setLoading={setLoading}
+						/>
+					);
 				})
 			) : (
-				<NewGame farmId={farmData.farm_id} />
+				<NewGame farmId={farmData.farm_id} user_id={user.id} />
 			)}
 		</div>
 	);
