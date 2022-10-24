@@ -50,7 +50,7 @@ const SignModal = ({ setModalIsOpen, pokemon }) => {
 						<div className="vl" />
 					</div>
 					<div className="details-section">
-						<h1 className="pokemon-name">{pokemon.name}</h1>
+						<h2 className="pokemon-name">{pokemon.name}</h2>
 						<button className="closeBtn" onClick={() => setModalIsOpen(false)}>
 							<RiCloseLine style={{ marginBottom: "-3px" }} />
 						</button>
