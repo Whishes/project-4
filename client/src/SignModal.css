@@ -1,0 +1,82 @@
+.sign {
+    width: 100vw;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    flex: row;
+    background-color: white;
+    color: black;
+}
+
+.sign img {
+    width: 96px;
+    height: 96px;
+}
+
+.img-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.img-section > img {
+    width: 100%;
+    height: 100%;
+}
+
+.vl {
+  height: 150px;
+  border: 1px solid var(--primary-theme);
+}
+
+.details-section {
+    width: 60%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.exp-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.exp-section > h4 {
+    margin-left: 10px;
+    align-self: flex-start;
+}
+
+.bar-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.total-exp-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ececec;
+    border-radius: 5px;
+}
+
+.current-exp-bar {
+    position: relative;
+    bottom: 10px;
+    align-self: flex-start;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.exp-num-section {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}

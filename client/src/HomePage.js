@@ -1,20 +1,70 @@
 import "./HomePage.css";
+import "./SignModal.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import egg_man from "./images/Egg-man.png";
+import NewGame from "./NewGame";
 import back_fence from "./images/back_fench.png";
 import front_fence from "./images/front_fence.png";
 import sign_post from "./images/signPost.png";
-import exclamation from "./images/Exclamation.png";
 import { RiCloseLine } from "react-icons/ri";
 
+const SignModal = ({ setModalIsOpen, pokemon }) => {
+	const barWidth =
+		pokemon.current_exp > 0
+			? (pokemon.current_exp / pokemon.exp_required) * 100
+			: 0;
+	return (
+		<>
+			<div className="darkBG" onClick={() => setModalIsOpen(false)} />
+			<div className="centered">
+				<div className="sign" data-testid="modal-open">
+					<div className="img-section">
+						<img src={pokemon.img_link} alt={pokemon.name}></img>
+						<div className="vl" />
+					</div>
+					<div className="details-section">
+						<h1>{pokemon.name}</h1>
+						<button className="closeBtn" onClick={() => setModalIsOpen(false)}>
+							<RiCloseLine style={{ marginBottom: "-3px" }} />
+						</button>
+						<div className="exp-section">
+							<h4>Exp:</h4>
+							<div className="bar-section">
+								<div className="total-exp-bar"></div>
+								<div
+									className="current-exp-bar"
+									style={{
+										width: `${barWidth}%`,
+										backgroundColor: barWidth >= 100 ? "#9FFE36" : "#4CF6EC",
+									}}
+								></div>
+								<div className="exp-num-section">
+									<p>{pokemon.current_exp}</p>
+									<p>/</p>
+									<p>{pokemon.exp_required}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
+};
+
 const Pokemon = ({ pokemon }) => {
+	const [modalIsOpen, setModalIsOpen] = useState(false);
+	console.log(pokemon);
 	const signClick = () => {
 		console.log("sign has been clicked on pokemon id: ", pokemon.id);
+		setModalIsOpen(true);
 	};
 
 	return (
 		<div className="fence" data-testid="pokemon-cage">
+			{modalIsOpen && (
+				<SignModal setModalIsOpen={setModalIsOpen} pokemon={pokemon} />
+			)}
 			<img src={back_fence} className="back_fence" alt={"back fence"}></img>
 			<img
 				src={pokemon.gif_link}
@@ -31,7 +81,6 @@ const Pokemon = ({ pokemon }) => {
 
 const HomePage = ({ user, farmData }) => {
 	const [pokemonData, setPokemonData] = useState([]);
-	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [loading, setLoading] = useState(true);
 	// console.log(farmData);
 	// console.log(user);
@@ -40,7 +89,7 @@ const HomePage = ({ user, farmData }) => {
 		axios
 			.get(`/api/pokemon/${id}`)
 			.then((response) => {
-				console.log("here: ", response.data);
+				//console.log("here: ", response.data);
 				setLoading(false);
 				if (response.data.length >= 1) {
 					setPokemonData(response.data);
@@ -49,61 +98,16 @@ const HomePage = ({ user, farmData }) => {
 			.catch((err) => console.log(err));
 	}, []);
 
-	const addNewEgg = () => {
-		setModalIsOpen(false);
-		//console.log("new egg added");
-		axios
-			.post(`/api/pokemon/`, { farm_id: farmData.farm_id })
-			.then((response) => {
-				console.log(response.data);
-			})
-			.catch((err) => console.log(err));
-	};
-
 	return (
 		<div id="farm-container" data-testid="farm-container">
 			{loading && <p>loading</p>}
+
 			{pokemonData.length >= 1 ? (
 				pokemonData.map((pokemon) => {
 					return <Pokemon key={pokemon.id} pokemon={pokemon} />;
 				})
 			) : (
-				<div id="man-container">
-					{modalIsOpen ? (
-						<>
-							<div className="darkBG" onClick={() => setModalIsOpen(false)} />
-							<div className="centered">
-								<div className="modal" data-testid="modal-open">
-									<div className="modalHeader">
-										<h5 className="heading">Elderly Man</h5>
-									</div>
-									<button
-										className="closeBtn"
-										onClick={() => setModalIsOpen(false)}
-									>
-										<RiCloseLine style={{ marginBottom: "-3px" }} />
-									</button>
-									<div className="modalContent">
-										<p>It's time to start your new farm!</p>
-										<p> Shall we get started with your first egg?</p>
-									</div>
-									<div className="modalActions">
-										<div className="actionsContainer">
-											<button className="yesBtn" onClick={() => addNewEgg()}>
-												Yes!
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</>
-					) : (
-						<button className="bounce" onClick={() => setModalIsOpen(true)}>
-							<img src={exclamation} alt="exclamation mark"></img>
-						</button>
-					)}
-					<img src={egg_man} alt="Egg man" data-testid="elderly_man"></img>
-				</div>
+				<NewGame farmId={farmData.farm_id} />
 			)}
 		</div>
 	);
