@@ -8,10 +8,8 @@ router.get("/:farmId", (req, res) => {
 	// if (sessionId !== paramsId) {
 	// 	return res.status(401).json({ message: "Not Authorized" });
 	// }
-
 	Pokemon.getAllInFarm(paramsId)
 		.then((data) => {
-			//console.log("log ~ file: farm.js ~ line 13 ~ .then ~ data", data.rows);
 			res.status(200).json(data.rows);
 		})
 		.catch((err) => {
@@ -22,18 +20,25 @@ router.get("/:farmId", (req, res) => {
 		});
 });
 
-router.post("/", (req, res) => {
-	console.log("post request on route '/' with body:", req.body);
+router.patch("/:pokemonId", (req, res) => {
+	const pokemonId = req.params.pokemonId;
 	const sessionId = req.session.userid;
-	const bodyId = req.body.user_id;
-	const { farm_id } = req.body;
-	if (!farm_id || !sessionId || bodyId !== sessionId) {
+	const { farm_id, user_id, dex_id } = req.body;
+
+	if (!sessionId || user_id !== sessionId || !farm_id) {
 		res.status(401).send({ message: "Not Authorised" });
+	} else if (!dex_id) {
+		return res.status(400).send({});
+	} else {
+		Pokemon.updatePokemon(farm_id, pokemonId, dex_id)
+			.then((dbRes) => {
+				console.log(dbRes);
+				return res.status(200).send({ success: true });
+			})
+			.catch((err) => console.log(err));
 	}
 
-	Pokemon.newEgg(farm_id).then((data) => {
-		console.log("return: ", data.rows);
-	});
+	return;
 });
 
 router.post("/exp/:id", (req, res) => {
@@ -53,6 +58,20 @@ router.post("/exp/:id", (req, res) => {
 			})
 			.catch((err) => console.log(err));
 	}
+});
+
+router.post("/", (req, res) => {
+	console.log("post request on route '/' with body:", req.body);
+	const sessionId = req.session.userid;
+	const bodyId = req.body.user_id;
+	const { farm_id } = req.body;
+	if (!farm_id || !sessionId || bodyId !== sessionId) {
+		res.status(401).send({ message: "Not Authorised" });
+	}
+
+	Pokemon.newEgg(farm_id).then((data) => {
+		console.log("return: ", data.rows);
+	});
 });
 
 module.exports = router;

@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/basic", (req, res) => {
+	//console.log("here");
 	Pokedex.getAllBasic()
 		.then((dbRes) => {
 			const randomPokemon = dbRes[Math.floor(Math.random() * dbRes.length)];

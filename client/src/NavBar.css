@@ -32,7 +32,7 @@ header .home-nav {
     justify-content:space-evenly;
     gap: 2em;
     transition: 1s;
-    transform: translateY(-100vh);
+    transform: translateY(-200vh);
     background-color: var(--primary-font);
 }
 

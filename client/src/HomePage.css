@@ -154,13 +154,16 @@
 
 .pokemon_img {
   position: relative;
+  display: flex;
+  align-self: center;
   bottom: 42px;
-  width:64px;
+  width:48px;
+  height: 48px;
 }
 
 .front_fence {
   position: relative;
-  bottom: 64px;
+  bottom: 48px;
   height: 22px;
   width: 64px;
 }
@@ -170,7 +173,7 @@
   width: 16px;
   height: 32px;
   left: 48px;
-  bottom: 80px;
+  bottom: 64px;
   cursor: pointer;
 }
 

@@ -29,7 +29,7 @@ import { RiCloseLine } from "react-icons/ri";
 //   "currency_pm": 0
 // }
 
-const SignModal = ({ setModalIsOpen, pokemon }) => {
+const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 	console.log(pokemon);
 	const barWidth =
 		pokemon.current_exp > 0
@@ -38,6 +38,28 @@ const SignModal = ({ setModalIsOpen, pokemon }) => {
 
 	const evolvePokemon = () => {
 		return;
+	};
+
+	const hatchEgg = () => {
+		axios
+			.get(`/api/pokedex/basic`)
+			.then((response) => {
+				const resPokemon = response.data;
+				console.log(resPokemon);
+				// update pokemon in farm with dex_id
+				const data = {
+					farm_id: pokemon.farm_id,
+					user_id: user_id,
+					dex_id: resPokemon.dex_id,
+				};
+				axios
+					.patch(`/api/pokemon/${pokemon.id}`, data)
+					.then((dbRes) => {
+						console.log(dbRes);
+					})
+					.catch((e) => console.log(e));
+			})
+			.catch((err) => console.log(err));
 	};
 
 	return (
@@ -55,12 +77,12 @@ const SignModal = ({ setModalIsOpen, pokemon }) => {
 							<RiCloseLine style={{ marginBottom: "-3px" }} />
 						</button>
 						{barWidth >= 100 && pokemon.evo_pokemon && (
-							<button className="yesBtn" onClick={() => evolvePokemon}>
+							<button className="yesBtn" onClick={() => evolvePokemon()}>
 								Evolve
 							</button>
 						)}
 						{barWidth >= 100 && pokemon.evo_stage === "egg" && (
-							<button className="yesBtn" onClick={() => evolvePokemon}>
+							<button className="yesBtn" onClick={() => hatchEgg()}>
 								Hatch
 							</button>
 						)}
@@ -93,6 +115,7 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	// console.log(pokemon);
 	const getNewExp = (inputDate, maxExp) => {
+		//console.log(inputDate);
 		const passiveExpRate = 0.3;
 		//
 		const pokemonDate = new Date(inputDate);
@@ -109,8 +132,13 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 
 	const signClick = () => {
 		//console.log("sign has been clicked on pokemon id: ", pokemon.id);
-		const newExpValue = getNewExp(pokemon.date_updated, pokemon.exp_required);
+		const newExpValue =
+			pokemon.current_exp !== pokemon.exp_required
+				? getNewExp(pokemon.date_updated, pokemon.exp_required)
+				: pokemon.exp_required;
+
 		setLoading(true);
+
 		if (newExpValue !== pokemon.current_exp) {
 			axios
 				.post(`/api/pokemon/exp/${pokemon.id}`, {
@@ -139,7 +167,11 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 	return (
 		<div className="fence" data-testid="pokemon-cage">
 			{modalIsOpen && (
-				<SignModal setModalIsOpen={setModalIsOpen} pokemon={pokemon} />
+				<SignModal
+					setModalIsOpen={setModalIsOpen}
+					pokemon={pokemon}
+					user_id={user.id}
+				/>
 			)}
 			<img src={back_fence} className="back_fence" alt={"back fence"}></img>
 			<img
@@ -151,14 +183,14 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 			<button className="sign_post" onClick={() => signClick()}>
 				<img src={sign_post} alt={"sign post"}></img>
 			</button>
-			{(pokemon.current_exp >= pokemon.exp_required && pokemon.evo_pokemon) ||
-				(pokemon.evo_stage === "egg" && (
+			{pokemon.current_exp >= pokemon.exp_required &&
+				(pokemon.evo_pokemon || pokemon.evo_stage === "egg") && (
 					<img
 						className="bounce evo_indicator"
 						src={arrow}
 						alt="evolution arrow"
 					></img>
-				))}
+				)}
 		</div>
 	);
 };
@@ -173,7 +205,7 @@ const HomePage = ({ user, farmData }) => {
 		axios
 			.get(`/api/pokemon/${id}`)
 			.then((response) => {
-				//console.log("here: ", response.data);
+				console.log("here: ", response.data);
 				setLoading(false);
 				if (response.data.length >= 1) {
 					setPokemonData(response.data);
