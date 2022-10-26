@@ -48,7 +48,7 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 				axios
 					.get(`api/pokedex/${data.dex_id}`)
 					.then((response) => {
-						console.log(response);
+						setModalIsOpen(false);
 						const resPokemon = response.data;
 						pokemon.gif_link = resPokemon.gif_link;
 						pokemon.current_exp = 0;
@@ -79,6 +79,7 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 					.patch(`/api/pokemon/${pokemon.id}`, data)
 					.then((dbRes) => {
 						//console.log(dbRes);
+						setModalIsOpen(false);
 						// update frontend state until user reloads page at some point
 						pokemon.gif_link = resPokemon.gif_link;
 						pokemon.current_exp = 0;
