@@ -26,7 +26,13 @@ router.get("/:dex_id", (req, res) => {
 		res.status(401).send({ message: "Not Authorised" });
 	}
 
-	return;
+	Pokedex.getNextStage(dex_id)
+		.then((dbRes) => {
+			//console.log("here");
+			const data = dbRes.rows[0];
+			return res.status(200).send(data);
+		})
+		.catch((err) => console.log(err));
 });
 
 module.exports = router;

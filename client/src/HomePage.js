@@ -37,7 +37,30 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 			: 0;
 
 	const evolvePokemon = () => {
-		return;
+		const data = {
+			farm_id: pokemon.farm_id,
+			user_id: user_id,
+			dex_id: pokemon.evo_pokemon,
+		};
+		axios
+			.patch(`/api/pokemon/${pokemon.id}`, data)
+			.then((dbRes) => {
+				axios
+					.get(`api/pokedex/${data.dex_id}`)
+					.then((response) => {
+						console.log(response);
+						const resPokemon = response.data;
+						pokemon.gif_link = resPokemon.gif_link;
+						pokemon.current_exp = 0;
+						pokemon.img_link = resPokemon.img_link;
+						pokemon.name = resPokemon.name;
+						pokemon.dex_id = resPokemon.dex_id;
+						pokemon.exp_required = resPokemon.exp_required;
+						pokemon.date_updated = new Date().toISOString();
+					})
+					.catch((err) => console.log(err));
+			})
+			.catch((err) => console.log(err));
 	};
 
 	const hatchEgg = () => {
@@ -194,6 +217,7 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 				<img src={sign_post} alt="sign post"></img>
 			</button>
 			{pokemon.current_exp >= pokemon.exp_required &&
+				pokemon.exp_required !== null &&
 				(pokemon.evo_pokemon !== null || pokemon.evo_stage === "egg") && (
 					<img
 						className="bounce evo_indicator"

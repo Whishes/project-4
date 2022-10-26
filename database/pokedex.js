@@ -963,7 +963,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/57.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/57.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -997,7 +997,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/59.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1093,7 +1093,7 @@ let pokedex = [
 		type_1: "psychic",
 		type_2: null,
 		description:
-			"Its brain can out­ perform a super­ computer. Its intelligence quotient is said to be 5,000.",
+			"Its brain can out perform a super computer. Its intelligence quotient is said to be 5,000.",
 		egg_group: "humanshape",
 		img_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png",
@@ -1235,7 +1235,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/73.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/73.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1320,7 +1320,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/78.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1354,7 +1354,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/80.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1388,7 +1388,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/82.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1438,7 +1438,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/85.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/85.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1472,7 +1472,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/87.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/87.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1506,7 +1506,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/89.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1540,7 +1540,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/91.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1642,7 +1642,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/97.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/97.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1676,7 +1676,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/99.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1710,7 +1710,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/101.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1744,7 +1744,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/103.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1777,7 +1777,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/105.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/105.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1862,7 +1862,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/110.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1896,7 +1896,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/112.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -1975,13 +1975,13 @@ let pokedex = [
 		type_1: "water",
 		type_2: null,
 		description:
-			"Capable of swim­ ming backwards by rapidly flapping its wing-like pectoral fins and stout tail.",
+			"Capable of swimming backwards by rapidly flapping its wing-like pectoral fins and stout tail.",
 		egg_group: "water1",
 		img_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/117.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -2015,7 +2015,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/119.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -2049,7 +2049,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/121.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -2185,7 +2185,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/129.gif",
-		exp_required: 3000,
+		exp_required: 5000,
 		currency_pm: 0.2,
 	},
 	{
@@ -2202,8 +2202,8 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/130.gif",
-		exp_required: 5000,
-		currency_pm: 0.3,
+		exp_required: null,
+		currency_pm: 0.4,
 	},
 	{
 		dex_id: 131,
@@ -2355,7 +2355,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/139.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/139.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -2389,7 +2389,7 @@ let pokedex = [
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png",
 		gif_link:
 			"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/141.gif",
-		exp_required: 5000,
+		exp_required: null,
 		currency_pm: 0.3,
 	},
 	{
@@ -2582,25 +2582,25 @@ let pokedex = [
 
 // https://archives.bulbagarden.net/media/upload/9/9d/Spr_3e_Egg.png
 
-// const db = require("./db.js");
+const db = require("./db.js");
 
-// pokedex.forEach((pokemon) => {
-// 	const sql = `INSERT INTO pokedex (dex_id, name, evo_stage, evo_pokemon, type_1, type_2, description, egg_group, img_link, gif_link, exp_required, currency_pm) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
-// 	return db
-// 		.query(sql, [
-// 			pokemon.dex_id,
-// 			pokemon.name,
-// 			pokemon.evo_stage,
-// 			pokemon.evo_pokemon,
-// 			pokemon.type_1,
-// 			pokemon.type_2,
-// 			pokemon.description,
-// 			pokemon.egg_group,
-// 			pokemon.img_link,
-// 			pokemon.gif_link,
-// 			pokemon.exp_required,
-// 			pokemon.currency_pm,
-// 		])
-// 		.then((dbRes) => dbRes)
-// 		.catch((err) => console.log(err));
-// });
+pokedex.forEach((pokemon) => {
+	const sql = `INSERT INTO pokedex (dex_id, name, evo_stage, evo_pokemon, type_1, type_2, description, egg_group, img_link, gif_link, exp_required, currency_pm) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
+	return db
+		.query(sql, [
+			pokemon.dex_id,
+			pokemon.name,
+			pokemon.evo_stage,
+			pokemon.evo_pokemon,
+			pokemon.type_1,
+			pokemon.type_2,
+			pokemon.description,
+			pokemon.egg_group,
+			pokemon.img_link,
+			pokemon.gif_link,
+			pokemon.exp_required,
+			pokemon.currency_pm,
+		])
+		.then((dbRes) => dbRes)
+		.catch((err) => console.log(err));
+});
