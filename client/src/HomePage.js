@@ -30,7 +30,7 @@ import { RiCloseLine } from "react-icons/ri";
 // }
 
 const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
-	console.log(pokemon);
+	//console.log(pokemon);
 	const barWidth =
 		pokemon.current_exp > 0
 			? (pokemon.current_exp / pokemon.exp_required) * 100
@@ -55,8 +55,15 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 				axios
 					.patch(`/api/pokemon/${pokemon.id}`, data)
 					.then((dbRes) => {
-						console.log(dbRes);
+						//console.log(dbRes);
+						// update frontend state until user reloads page at some point
 						pokemon.gif_link = resPokemon.gif_link;
+						pokemon.current_exp = 0;
+						pokemon.img_link = resPokemon.img_link;
+						pokemon.name = resPokemon.name;
+						pokemon.dex_id = resPokemon.dex_id;
+						pokemon.exp_required = resPokemon.exp_required;
+						pokemon.date_updated = new Date().toISOString();
 					})
 					.catch((e) => console.log(e));
 			})
@@ -176,18 +183,18 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 					user_id={user.id}
 				/>
 			)}
-			<img src={back_fence} className="back_fence" alt={"back fence"}></img>
+			<img src={back_fence} className="back_fence" alt="back fence"></img>
 			<img
 				src={pokemon.gif_link}
 				alt={pokemon.name}
 				className="pokemon_img"
 			></img>
-			<img src={front_fence} className="front_fence" alt={"front fence"}></img>
+			<img src={front_fence} className="front_fence" alt="front fence"></img>
 			<button className="sign_post" onClick={() => signClick()}>
-				<img src={sign_post} alt={"sign post"}></img>
+				<img src={sign_post} alt="sign post"></img>
 			</button>
 			{pokemon.current_exp >= pokemon.exp_required &&
-				(pokemon.evo_pokemon || pokemon.evo_stage === "egg") && (
+				(pokemon.evo_pokemon !== null || pokemon.evo_stage === "egg") && (
 					<img
 						className="bounce evo_indicator"
 						src={arrow}

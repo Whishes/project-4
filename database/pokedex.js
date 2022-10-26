@@ -2574,11 +2574,13 @@ let pokedex = [
 		img_link:
 			"https://archives.bulbagarden.net/media/upload/archive/e/ed/20170805233207%21Spr_5b_Egg.png",
 		gif_link:
-			"https://archives.bulbagarden.net/media/upload/e/ed/Spr_5b_Egg.png",
+			"https://archives.bulbagarden.net/media/upload/4/45/Spr_4d_Egg.png",
 		exp_required: 1000,
 		currency_pm: 0,
 	},
 ];
+
+// https://archives.bulbagarden.net/media/upload/9/9d/Spr_3e_Egg.png
 
 // const db = require("./db.js");
 
