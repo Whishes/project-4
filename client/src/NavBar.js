@@ -1,6 +1,6 @@
 import "./NavBar.css";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { FaBars, FaTimes, FaDoorOpen, FaBook } from "react-icons/fa";
 import egg from "./images/egg.png";
 import axios from "axios";
@@ -57,7 +57,24 @@ const NavBar = ({
 		const check = window.confirm(
 			`Are you sure you want to buy an egg for $${farmData.egg_cost}?`
 		);
-		console.log(check);
+
+		if (check && farmData.egg_cost > currency) {
+			return alert("Sorry, you do not have enough money for this purchase");
+		}
+
+		if (check) {
+			const newEggCost = farmData.egg_cost * 1.2;
+			axios
+				.post(`api/farm/${farmData.farm_id}`, {
+					user_id: user.id,
+					newEggCost: newEggCost,
+				})
+				.then((response) => {
+					setCurrency(currency - farmData.egg_cost);
+					farmData.egg_cost = newEggCost;
+				})
+				.catch((err) => console.log(err));
+		}
 	};
 
 	return (

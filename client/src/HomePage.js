@@ -14,7 +14,7 @@ const HomePage = ({ user, farmData }) => {
 		axios
 			.get(`/api/pokemon/${id}`)
 			.then((response) => {
-				console.log("here: ", response.data);
+				//console.log("here: ", response.data);
 				setLoading(false);
 				if (response.data.length >= 1) {
 					setPokemonData(response.data);

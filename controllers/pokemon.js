@@ -42,9 +42,9 @@ router.patch("/:pokemonId", (req, res) => {
 							.then((d) => {
 								return res.status(200).send({ success: true });
 							})
-							.catch((error) => console.log(error));
+							.catch((err) => console.log(err));
 					})
-					.catch((e) => console.log(e));
+					.catch((err) => console.log(err));
 			})
 			.catch((err) => console.log(err));
 	}
@@ -72,7 +72,7 @@ router.post("/exp/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-	console.log("post request on route '/' with body:", req.body);
+	//console.log("post request on route '/' with body:", req.body);
 	const sessionId = req.session.userid;
 	const bodyId = req.body.user_id;
 	const { farm_id } = req.body;
@@ -81,7 +81,8 @@ router.post("/", (req, res) => {
 	}
 
 	Pokemon.newEgg(farm_id).then((data) => {
-		console.log("return: ", data.rows);
+		//console.log("return: ", data.rows);
+		return res.status(200).send({ success: true });
 	});
 });
 
