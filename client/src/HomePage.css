@@ -151,6 +151,7 @@
   height: 75px;
   position: relative;
   align-items: center;
+  justify-content: center;
 }
 
 .back_fence {
@@ -164,9 +165,9 @@
   /* z-index: 1; */
   /* display: flex; */
   /* align-self: center; */
-  /* bottom: 42px; */
+  bottom: 32px;
   width:48px;
-  height: 48px;
+  /* height: 48px; */
 }
 
 .front_fence {
