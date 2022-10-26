@@ -20,7 +20,7 @@ CREATE TABLE farm (
     farm_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     currency INT DEFAULT 5000,
-    total_c_pm INT DEFAULT 0,
+    total_c_pm FLOAT DEFAULT 0,
     c_collected TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     egg_cost INT DEFAULT 5000
 );

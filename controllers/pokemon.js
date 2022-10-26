@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Pokemon = require("../models/pokemon");
+const Farm = require("../models/farm");
 
 router.get("/:farmId", (req, res) => {
 	const paramsId = parseInt(req.params.farmId);
@@ -32,8 +33,18 @@ router.patch("/:pokemonId", (req, res) => {
 	} else {
 		Pokemon.updatePokemon(farm_id, pokemonId, dex_id)
 			.then((dbRes) => {
-				console.log(dbRes);
-				return res.status(200).send({ success: true });
+				//console.log(dbRes);
+				Pokemon.getTotalCurrency(farm_id)
+					.then((data) => {
+						console.log(data[0].sum);
+						const sumValue = data[0].sum;
+						Farm.updateCPM(farm_id, sumValue)
+							.then((d) => {
+								return res.status(200).send({ success: true });
+							})
+							.catch((error) => console.log(error));
+					})
+					.catch((e) => console.log(e));
 			})
 			.catch((err) => console.log(err));
 	}
