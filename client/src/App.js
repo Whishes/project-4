@@ -12,6 +12,8 @@ function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [user, setUser] = useState(null);
 	const [farmData, setFarmData] = useState(null);
+	const [currency, setCurrency] = useState(null);
+	const [storedCurrency, setStoredCurrency] = useState(null);
 	//
 	useEffect(() => {
 		if (loggedIn) {
@@ -32,7 +34,17 @@ function App() {
 					egg_cost,
 				} = response.data;
 
+				const checkCurrency = () => {
+					const lastClicked = new Date(c_collected);
+					const currentDate = Date.now();
+					const diffTimeInMilli = Math.abs(currentDate - lastClicked);
+					const diffInMins = Math.ceil(diffTimeInMilli / (1000 * 60));
+					return parseInt(diffInMins * 0.3);
+				};
+				setStoredCurrency(checkCurrency);
+
 				setUser({ id: id, username: username, email: email });
+				setCurrency(currency);
 				setFarmData({
 					farm_id: farm_id,
 					currency: currency,
@@ -54,7 +66,15 @@ function App() {
 
 	return (
 		<div className="App" style={backgroundStyles}>
-			<NavBar loggedIn={loggedIn} farmData={farmData} />
+			<NavBar
+				user={user}
+				loggedIn={loggedIn}
+				farmData={farmData}
+				currency={currency}
+				setCurrency={setCurrency}
+				storedCurrency={storedCurrency}
+				setStoredCurrency={setStoredCurrency}
+			/>
 			<Routes>
 				{loggedIn ? (
 					<Route

@@ -1,13 +1,23 @@
 import "./NavBar.css";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaBars, FaTimes, FaDoorOpen, FaBook } from "react-icons/fa";
 import egg from "./images/egg.png";
 import axios from "axios";
+import { GiLockedChest, GiOpenChest } from "react-icons/gi";
 
-const NavBar = ({ loggedIn, farmData }) => {
+const NavBar = ({
+	loggedIn,
+	farmData,
+	currency,
+	setCurrency,
+	storedCurrency,
+	setStoredCurrency,
+	user,
+}) => {
 	console.log(farmData);
 	const navRef = useRef();
+
 	const showNavBar = () => {
 		navRef.current.classList.toggle("responsive_nav");
 	};
@@ -22,6 +32,20 @@ const NavBar = ({ loggedIn, farmData }) => {
 				//console.log(err)
 				alert("log out unsuccessful");
 			});
+	};
+
+	const moneyClick = () => {
+		const newTotalCurrency = currency + storedCurrency;
+		axios
+			.patch(`/api/farm/${farmData.farm_id}`, {
+				user_id: user.id,
+				newValue: newTotalCurrency,
+			})
+			.then((response) => {
+				setStoredCurrency(0);
+				setCurrency(newTotalCurrency);
+			})
+			.catch((err) => console.log(err));
 	};
 
 	const collectionClick = () => {
@@ -40,8 +64,17 @@ const NavBar = ({ loggedIn, farmData }) => {
 		<header>
 			{loggedIn ? (
 				<>
-					<p data-testid="currency-amt">${farmData.currency}</p>
+					<p data-testid="currency-amt">${currency}</p>
 					<nav>
+						{storedCurrency > 50 ? (
+							<button className="nav-btn" onClick={() => moneyClick()}>
+								<GiOpenChest />
+							</button>
+						) : (
+							<button className="nav-btn">
+								<GiLockedChest />
+							</button>
+						)}
 						<button
 							className="nav-btn"
 							onClick={() => eggClick()}

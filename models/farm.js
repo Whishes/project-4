@@ -11,6 +11,12 @@ SET total_c_pm = $1
 WHERE farm_id = $2`;
 		return db.query(sql, [newValue, farm_id]).then((dbRes) => dbRes);
 	},
+	updateCurrency: (farm_id, newValue, newEggCost) => {
+		const sql = `UPDATE farm
+SET currency = $1, c_collected = CURRENT_TIMESTAMP
+WHERE farm_id = $2`;
+		return db.query(sql, [newValue, farm_id]).then((dbRes) => dbRes);
+	},
 };
 
 module.exports = Farm;
