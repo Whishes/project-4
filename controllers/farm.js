@@ -19,7 +19,6 @@ router.post("/:farmId", (req, res) => {
 	if (!newEggCost) {
 		return res.status(400).send({});
 	}
-
 	Farm.buyEgg(farm_id, newEggCost)
 		.then((data) => {
 			Pokemon.newEgg(farm_id)

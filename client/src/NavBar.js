@@ -14,8 +14,10 @@ const NavBar = ({
 	storedCurrency,
 	setStoredCurrency,
 	user,
+	setPokemonData,
+	pokemonData,
 }) => {
-	console.log(farmData);
+	//console.log(farmData);
 	const navRef = useRef();
 
 	const showNavBar = () => {
@@ -63,15 +65,38 @@ const NavBar = ({
 		}
 
 		if (check) {
-			const newEggCost = farmData.egg_cost * 1.2;
+			const newEggCost = parseInt(farmData.egg_cost * 1.2);
 			axios
 				.post(`api/farm/${farmData.farm_id}`, {
 					user_id: user.id,
 					newEggCost: newEggCost,
 				})
 				.then((response) => {
+					const data = response.data;
+					const egg = {
+						id: data.id,
+						farm_id: data.farm_id,
+						dex_id: 10000,
+						current_exp: 0,
+						date_created: data.date_created,
+						date_updated: data.date_updated,
+						name: "egg",
+						evo_stage: "egg",
+						evo_pokemon: null,
+						type_1: "egg",
+						type_2: null,
+						description: "It's an egg. I wonder what's inside",
+						egg_group: null,
+						img_link:
+							"https://archives.bulbagarden.net/media/upload/archive/e/ed/20170805233207%21Spr_5b_Egg.png",
+						gif_link:
+							"https://archives.bulbagarden.net/media/upload/4/45/Spr_4d_Egg.png",
+						exp_required: 1000,
+						currency_pm: 0,
+					};
 					setCurrency(currency - farmData.egg_cost);
 					farmData.egg_cost = newEggCost;
+					setPokemonData([...pokemonData, egg]);
 				})
 				.catch((err) => console.log(err));
 		}

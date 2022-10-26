@@ -4,8 +4,7 @@ import axios from "axios";
 import NewGame from "./NewGame";
 import Pokemon from "./Pokemon";
 
-const HomePage = ({ user, farmData }) => {
-	const [pokemonData, setPokemonData] = useState([]);
+const HomePage = ({ user, farmData, pokemonData, setPokemonData }) => {
 	const [loading, setLoading] = useState(true);
 	// console.log(farmData);
 	// console.log(user);
@@ -14,7 +13,7 @@ const HomePage = ({ user, farmData }) => {
 		axios
 			.get(`/api/pokemon/${id}`)
 			.then((response) => {
-				//console.log("here: ", response.data);
+				// console.log("here: ", response.data);
 				setLoading(false);
 				if (response.data.length >= 1) {
 					setPokemonData(response.data);
@@ -39,7 +38,12 @@ const HomePage = ({ user, farmData }) => {
 					);
 				})
 			) : (
-				<NewGame farmId={farmData.farm_id} user_id={user.id} />
+				<NewGame
+					farmId={farmData.farm_id}
+					user_id={user.id}
+					setPokemonData={setPokemonData}
+					pokemonData={pokemonData}
+				/>
 			)}
 		</div>
 	);

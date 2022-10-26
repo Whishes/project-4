@@ -14,6 +14,7 @@ function App() {
 	const [farmData, setFarmData] = useState(null);
 	const [currency, setCurrency] = useState(null);
 	const [storedCurrency, setStoredCurrency] = useState(null);
+	const [pokemonData, setPokemonData] = useState([]);
 	//
 	useEffect(() => {
 		if (loggedIn) {
@@ -74,13 +75,21 @@ function App() {
 				setCurrency={setCurrency}
 				storedCurrency={storedCurrency}
 				setStoredCurrency={setStoredCurrency}
+				setPokemonData={setPokemonData}
+				pokemonData={pokemonData}
 			/>
 			<Routes>
 				{loggedIn ? (
 					<Route
 						path="/"
 						element={
-							<HomePage loggedIn={loggedIn} user={user} farmData={farmData} />
+							<HomePage
+								loggedIn={loggedIn}
+								user={user}
+								farmData={farmData}
+								pokemonData={pokemonData}
+								setPokemonData={setPokemonData}
+							/>
 						}
 					/>
 				) : (
