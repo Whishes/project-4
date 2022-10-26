@@ -1,11 +1,15 @@
 #farm-container {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     margin: 1em;
     margin-top: 3em;
     flex-wrap: wrap;
-    gap:1em;
+    gap: 2em;
+}
+
+#farm-container > .fence {
+  width: 30%;
 }
 
 #man-container {
@@ -35,11 +39,11 @@
   background-color: rgba(0, 0, 0, 0.2);
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: 1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
+  position: fixed;
 }
 
 .centered {
@@ -47,6 +51,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .modal {
@@ -54,7 +59,7 @@
   height: 170px;
   background: white;
   color: white;
-  z-index: 10;
+  z-index: 3;
   border-radius: 16px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
@@ -144,27 +149,30 @@
   flex-direction: column;
   width: 64px;
   height: 75px;
+  position: relative;
+  align-items: center;
 }
 
 .back_fence {
   /* position: relative; */
-  height: 43px;
+  height: 48px;
   width: 64px;
 }
 
 .pokemon_img {
-  position: relative;
-  display: flex;
-  align-self: center;
-  bottom: 42px;
+  position: absolute;
+  /* z-index: 1; */
+  /* display: flex; */
+  /* align-self: center; */
+  /* bottom: 42px; */
   width:48px;
   height: 48px;
 }
 
 .front_fence {
   position: relative;
-  bottom: 48px;
-  height: 22px;
+  /* bottom: 8px; */
+  height: 24px;
   width: 64px;
 }
 
@@ -172,8 +180,8 @@
   position: relative;
   width: 16px;
   height: 32px;
-  left: 48px;
-  bottom: 64px;
+  left: 20px;
+  bottom: 16px;
   cursor: pointer;
 }
 
@@ -191,5 +199,14 @@
   height: 32px;
   position: relative;
   left: 16px;
-  bottom: 192px
+  bottom: 176px
 }
+
+/* 
+get rid of flex on fence class
+
+get rid of heights on back and front fence
+height front fence 24px
+
+get rid of height on pokemon
+*/

@@ -56,6 +56,7 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 					.patch(`/api/pokemon/${pokemon.id}`, data)
 					.then((dbRes) => {
 						console.log(dbRes);
+						pokemon.gif_link = resPokemon.gif_link;
 					})
 					.catch((e) => console.log(e));
 			})
@@ -86,24 +87,26 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 								Hatch
 							</button>
 						)}
-						<div className="exp-section">
-							<h4>Exp:</h4>
-							<div className="bar-section">
-								<div className="total-exp-bar"></div>
-								<div
-									className="current-exp-bar"
-									style={{
-										width: `${barWidth}%`,
-										backgroundColor: barWidth >= 100 ? "#9FFE36" : "#4CF6EC",
-									}}
-								></div>
-								<div className="exp-num-section">
-									<p>{pokemon.current_exp}</p>
-									<p>/</p>
-									<p>{pokemon.exp_required}</p>
+						{pokemon.exp_required !== null && (
+							<div className="exp-section">
+								<h4>Exp:</h4>
+								<div className="bar-section">
+									<div className="total-exp-bar"></div>
+									<div
+										className="current-exp-bar"
+										style={{
+											width: `${barWidth}%`,
+											backgroundColor: barWidth >= 100 ? "#9FFE36" : "#4CF6EC",
+										}}
+									></div>
+									<div className="exp-num-section">
+										<p>{pokemon.current_exp}</p>
+										<p>/</p>
+										<p>{pokemon.exp_required}</p>
+									</div>
 								</div>
 							</div>
-						</div>
+						)}
 					</div>
 				</div>
 			</div>
@@ -139,7 +142,7 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 
 		setLoading(true);
 
-		if (newExpValue !== pokemon.current_exp) {
+		if (newExpValue !== pokemon.current_exp && pokemon.exp_required !== null) {
 			axios
 				.post(`/api/pokemon/exp/${pokemon.id}`, {
 					user_id: user.id,
