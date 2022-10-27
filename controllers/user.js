@@ -3,6 +3,7 @@ const router = express.Router();
 const { generateHash } = require("../utils/hash");
 const User = require("../models/user");
 const Farm = require("../models/farm");
+const Collection = require("../models/collection");
 
 // register route
 router.post("/", (req, res) => {
@@ -29,7 +30,14 @@ router.post("/", (req, res) => {
 			Farm.newFarm(newUserId)
 				.then((data) => {
 					//console.log("data: ", data);
-					res.status(200).json({ success: true });
+					Collection.newCollection(newUserId)
+						.then((d) => {
+							res.status(200).json({ success: true });
+						})
+						.catch((err) => {
+							//console.log("here:", err);
+							res.status(500).send({ message: "Somewthing went wrong" });
+						});
 				})
 				.catch((err) => {
 					//console.log("here:", err);

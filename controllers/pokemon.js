@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Pokemon = require("../models/pokemon");
 const Farm = require("../models/farm");
+const Collection = require("../models/collection");
 
 router.get("/:farmId", (req, res) => {
 	const paramsId = parseInt(req.params.farmId);
@@ -34,13 +35,17 @@ router.patch("/:pokemonId", (req, res) => {
 		Pokemon.updatePokemon(farm_id, pokemonId, dex_id)
 			.then((dbRes) => {
 				//console.log(dbRes);
-				Pokemon.getTotalCurrency(farm_id)
-					.then((data) => {
-						console.log(data[0].sum);
-						const sumValue = data[0].sum;
-						Farm.updateCPM(farm_id, sumValue)
-							.then((d) => {
-								return res.status(200).send({ success: true });
+				Collection.newPokemon(dex_id, user_id)
+					.then((response) => {
+						Pokemon.getTotalCurrency(farm_id)
+							.then((data) => {
+								//console.log(data[0].sum);
+								const sumValue = data[0].sum;
+								Farm.updateCPM(farm_id, sumValue)
+									.then((d) => {
+										return res.status(200).send({ success: true });
+									})
+									.catch((err) => console.log(err));
 							})
 							.catch((err) => console.log(err));
 					})

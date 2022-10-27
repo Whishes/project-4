@@ -1,0 +1,57 @@
+.collection { 
+    transform: translateY(-200vh);
+    transition: 1s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-font);
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #FBFBFB;
+}
+
+.collection-container {
+    overflow-y: scroll;
+    width: 100%;
+    margin-top: 2em;
+}
+
+.collection-row {
+    height: 4em;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #FFFFFF;
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1em 0 1em;
+}
+
+.row-left {
+width: 2em;
+}
+
+.row-middle {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    width: 60%;
+}
+
+.row-middle > :first-child {
+
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row-middle > h3::first-letter {
+    text-transform: capitalize;
+}

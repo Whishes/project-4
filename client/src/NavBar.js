@@ -1,10 +1,11 @@
 import "./NavBar.css";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { FaBars, FaTimes, FaDoorOpen, FaBook } from "react-icons/fa";
 import egg from "./images/egg.png";
 import axios from "axios";
 import { GiLockedChest, GiOpenChest } from "react-icons/gi";
+import Collection from "./Collection";
 
 const NavBar = ({
 	loggedIn,
@@ -17,8 +18,9 @@ const NavBar = ({
 	setPokemonData,
 	pokemonData,
 }) => {
-	//console.log(farmData);
+	//console.log(user);
 	const navRef = useRef();
+	const [showCollection, setShowCollection] = useState(false);
 
 	const showNavBar = () => {
 		navRef.current.classList.toggle("responsive_nav");
@@ -48,10 +50,6 @@ const NavBar = ({
 				setCurrency(newTotalCurrency);
 			})
 			.catch((err) => console.log(err));
-	};
-
-	const collectionClick = () => {
-		console.log("collection button has been clicked");
 	};
 
 	const eggClick = () => {
@@ -102,6 +100,10 @@ const NavBar = ({
 		}
 	};
 
+	const collectionClick = () => {
+		setShowCollection(true);
+	};
+
 	return (
 		<header>
 			{loggedIn ? (
@@ -139,6 +141,13 @@ const NavBar = ({
 							<FaDoorOpen />
 						</button>
 					</nav>
+					{showCollection && (
+						<Collection
+							showCollection={showCollection}
+							setShowCollection={setShowCollection}
+							user={user}
+						/>
+					)}
 				</>
 			) : (
 				<>
