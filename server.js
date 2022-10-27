@@ -38,10 +38,10 @@ app.use("/api/session", sessionController);
 app.use("/api/user", userController);
 app.use("/api/farm", farmController);
 app.get("/api/healthcheck", (req, res) => res.send({ code: 200 }));
-// app.get("*", (req, res) => {
-// 	res.setHeader("content-type", "text/html");
-// 	fs.createReadStream(`${__dirname}/client/build/index.html`).pipe(res);
-// });
+app.get("*", (req, res) => {
+	res.setHeader("content-type", "text/html");
+	fs.createReadStream(`${__dirname}/client/build/index.html`).pipe(res);
+});
 
 // start server + check to make sure api works
 app.listen(port, () => console.log(`Listening at localhost:${port}`));
