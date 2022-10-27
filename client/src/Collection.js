@@ -1,43 +1,16 @@
 import "./Collection.css";
+import CollectionRow from "./CollectionRow";
+import DexEntry from "./DexEntry";
 import { FaTimes } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Tick from "./images/Tick.svg";
-import Cross from "./images/Cross.svg";
-
-const CollectionRow = ({ data }) => {
-	return (
-		<div className="collection-row">
-			<div className="row-left">
-				<h3>{data.dex_id}</h3>
-			</div>
-			<div className="row-middle">
-				{data.collected ? (
-					<>
-						<img src={data.gif_link} alt={data.name}></img>
-						<h3>{data.name}</h3>
-					</>
-				) : (
-					<>
-						<h1>?</h1>
-						<h3>??????????</h3>
-					</>
-				)}
-			</div>
-			<div className="row-right">
-				{data.collected ? (
-					<img src={Tick} alt="tick" />
-				) : (
-					<img src={Cross} alt="cross" />
-				)}
-			</div>
-		</div>
-	);
-};
 
 const Collection = ({ showCollection, setShowCollection, user }) => {
 	const [collection, setCollection] = useState(null);
 	const [collectedCount, setCollectedCount] = useState(0);
+	const [entryData, setEntryData] = useState(null);
+	const [showEntry, setShowEntry] = useState(false);
+
 	useEffect(() => {
 		if (collection === null) {
 			axios
@@ -76,9 +49,24 @@ const Collection = ({ showCollection, setShowCollection, user }) => {
 			<div className="collection-container">
 				{collection &&
 					collection.map((pokemon) => {
-						return <CollectionRow key={pokemon.dex_id} data={pokemon} />;
+						return (
+							<CollectionRow
+								key={pokemon.dex_id}
+								data={pokemon}
+								setShowEntry={setShowEntry}
+								setEntryData={setEntryData}
+							/>
+						);
 					})}
 			</div>
+
+			{showEntry && (
+				<DexEntry
+					data={entryData}
+					setShowEntry={setShowEntry}
+					showEntry={showEntry}
+				/>
+			)}
 		</div>
 	);
 };

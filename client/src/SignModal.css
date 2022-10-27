@@ -26,8 +26,8 @@
 }
 
 .vl {
-  height: 150px;
-  border: 1px solid var(--primary-theme);
+  height: 70%;
+  border-right: 1px solid black;
 }
 
 .details-section {

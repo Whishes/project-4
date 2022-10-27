@@ -12,7 +12,7 @@ router.get("/:collectionId", (req, res) => {
 
 	Collection.getAllPokemon(collection_id, user_id)
 		.then((data) => {
-			console.log(data);
+			//console.log(data);
 			return res.status(200).send(data);
 		})
 		.catch((err) => console.log(err));

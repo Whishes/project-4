@@ -1,0 +1,120 @@
+.dex-entry { 
+    transform: translateX(200vw);
+    transition: 4s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #FBFBFB;
+    cursor: auto;
+    justify-content: space-evenly;
+}
+
+.back-arrow {
+    position: absolute;
+    top:0.7em;
+    left: 0.7em;
+}
+
+.dex-entry > h1{
+    margin-top: 2em;
+}
+
+.dex-entry > img {
+    width: 144px;
+
+}
+
+.entry-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.entry-content {
+    margin: 2em;
+}
+
+.entry-content > p > span {
+    font-weight: 700;
+    color: var(--primary-theme);
+}
+
+.water { 
+    color: blue;
+}
+
+.fire {
+    color: orangered;
+}
+
+.ice {
+    color: lightskyblue;
+}
+
+.flying {
+    color: lightblue;
+}
+
+.grass { 
+    color: green;
+}
+
+.ground {
+    color: brown;
+}
+
+.rock {
+    color: rosybrown;
+}
+
+.electric {
+    color: yellow;
+}
+
+.psychic {
+    color: rgb(207, 5, 123);
+}
+
+.dragon {
+    color: darkblue;
+}
+
+.fairy {
+    color: palevioletred;
+}
+
+.normal{
+    color: whitesmoke;
+}
+
+.ghost {
+    color: rgb(73, 4, 73);
+}
+
+.dark {
+    color: black;
+}
+
+.bug {
+    color: greenyellow;
+}
+
+.fighting {
+    color: rgb(109, 32, 1);
+}
+
+.poison {
+    color: purple;
+}
+
+.steel {
+    color: grey;
+}

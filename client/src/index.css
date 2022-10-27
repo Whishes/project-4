@@ -1,5 +1,5 @@
 :root {
-  --primary-theme: #59CB47;
+  --primary-theme: black;
   --primary-font: #FBFBFB;
 }
 
@@ -7,6 +7,10 @@
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
+}
+
+*::first-letter {
+  text-transform: capitalize;
 }
 
 body {

@@ -6,13 +6,16 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: var(--primary-font);
     z-index: 1;
 
     display: flex;
     align-items: center;
     flex-direction: column;
     background-color: #FBFBFB;
+}
+
+.collected {
+    cursor: pointer;
 }
 
 .collection-container {

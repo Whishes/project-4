@@ -74,8 +74,8 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 				<div className="sign" data-testid="modal-open">
 					<div className="img-section">
 						<img src={pokemon.img_link} alt={pokemon.name}></img>
-						<div className="vl" />
 					</div>
+					<div className="vl" />
 					<div className="details-section">
 						<h2 className="pokemon-name">{pokemon.name}</h2>
 						<button className="closeBtn" onClick={() => setModalIsOpen(false)}>
