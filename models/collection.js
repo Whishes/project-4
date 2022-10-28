@@ -7,7 +7,7 @@ FROM users_collection u
 JOIN pokemon_collected p ON u.id = p.collection_id
 JOIN pokedex px ON p.pokemon_id = px.dex_id
 WHERE (p.collection_id = $1 AND u.user_id = $2)
-ORDER BY px.dex_id DESC`;
+ORDER BY px.dex_id ASC`;
 		return db.query(sql, [collection_id, user_id]).then((dbRes) => dbRes.rows);
 	},
 	newCollection: (user_id) => {

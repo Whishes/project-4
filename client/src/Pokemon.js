@@ -19,11 +19,12 @@ const Pokemon = ({ pokemon, user, setLoading, setError }) => {
 		const diffTimeInMilli = Math.abs(currentDate - pokemonDate);
 		const diffInSecs = Math.ceil(diffTimeInMilli / (1000 * 60));
 		const newExp = parseInt(diffInSecs * passiveExpRate);
+		const totalEXP = pokemon.current_exp + newExp;
 
-		if (newExp >= maxExp) {
+		if (totalEXP >= maxExp) {
 			return maxExp;
 		}
-		return newExp;
+		return totalEXP;
 	};
 
 	const signClick = () => {

@@ -35,5 +35,6 @@ button {
 .App {
   height: 100%;
   width: 100%;
+  background-image: url("./images/phone_map.png");
 }
 

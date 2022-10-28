@@ -1,11 +1,13 @@
 #farm-container {
+    background-image: url("./images//phone_map.png");
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1em;
-    margin-top: 4em;
+    padding: 1em;
     flex-wrap: wrap;
     gap: 2em;
+    margin-top: 4em;
+    overflow-y: scroll;
 }
 
 #farm-container > .fence {

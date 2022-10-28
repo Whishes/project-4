@@ -13,11 +13,11 @@ ON f.dex_id = p.dex_id
 		const sql = `INSERT INTO pokemon_in_farm(farm_id, current_exp) 
 VALUES($1, $2) 
 RETURNING *`;
-		return db.query(sql, [farm_id, egg_exp]).then((dbRes) => dbRes);
+		return db.query(sql, [farm_id, egg_exp]).then((dbRes) => dbRes.rows);
 	},
 	updateExp: (farm_id, newExp, pokemon_id) => {
 		const sql = `UPDATE pokemon_in_farm
-SET current_exp = $1 
+SET current_exp = $1, date_updated = CURRENT_TIMESTAMP 
 WHERE farm_id = $2 AND id = $3;`;
 		return db.query(sql, [newExp, farm_id, pokemon_id]).then((dbRes) => dbRes);
 	},

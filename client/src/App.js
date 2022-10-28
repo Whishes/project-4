@@ -65,15 +65,9 @@ function App() {
 			});
 	}, []);
 	//
-	const backgroundStyles = {
-		backgroundImage: `url(${BackgroundImage})`,
-		backgroundPosition: "center",
-		backgroundSize: "cover",
-		backgroundRepeat: "no-repeat",
-	};
 
 	return (
-		<div className="App" style={backgroundStyles}>
+		<div className="App">
 			{loading && <Loading />}
 			<NavBar
 				user={user}

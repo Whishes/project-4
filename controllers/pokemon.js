@@ -87,7 +87,7 @@ router.post("/", (req, res) => {
 
 	Pokemon.newEgg(farm_id, egg_exp).then((data) => {
 		//console.log("return: ", data.rows);
-		return res.status(200).send({ success: true });
+		return res.status(200).send(data);
 	});
 });
 

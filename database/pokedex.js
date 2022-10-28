@@ -2582,25 +2582,43 @@ let pokedex = [
 
 // https://archives.bulbagarden.net/media/upload/9/9d/Spr_3e_Egg.png
 
-const db = require("./db.js");
+// const db = require("./db.js");
 
-pokedex.forEach((pokemon) => {
-	const sql = `INSERT INTO pokedex (dex_id, name, evo_stage, evo_pokemon, type_1, type_2, description, egg_group, img_link, gif_link, exp_required, currency_pm) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
-	return db
-		.query(sql, [
-			pokemon.dex_id,
-			pokemon.name,
-			pokemon.evo_stage,
-			pokemon.evo_pokemon,
-			pokemon.type_1,
-			pokemon.type_2,
-			pokemon.description,
-			pokemon.egg_group,
-			pokemon.img_link,
-			pokemon.gif_link,
-			pokemon.exp_required,
-			pokemon.currency_pm,
-		])
-		.then((dbRes) => dbRes)
-		.catch((err) => console.log(err));
-});
+// pokedex.forEach((pokemon) => {
+// 	const sql = `INSERT INTO pokedex (dex_id, name, evo_stage, evo_pokemon, type_1, type_2, description, egg_group, img_link, gif_link, exp_required, currency_pm) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`;
+// 	return db
+// 		.query(sql, [
+// 			pokemon.dex_id,
+// 			pokemon.name,
+// 			pokemon.evo_stage,
+// 			pokemon.evo_pokemon,
+// 			pokemon.type_1,
+// 			pokemon.type_2,
+// 			pokemon.description,
+// 			pokemon.egg_group,
+// 			pokemon.img_link,
+// 			pokemon.gif_link,
+// 			pokemon.exp_required,
+// 			pokemon.currency_pm,
+// 		])
+// 		.then((dbRes) => dbRes)
+// 		.catch((err) => console.log(err));
+// });
+
+// pokedex.forEach((pokemon) => {
+// 	const sql = `INSERT INTO pokemon_in_farm (farm_id, dex_id) VALUES ($1, $2);`;
+
+// 	return db
+// 		.query(sql, [1, pokemon.dex_id])
+// 		.then((dbRes) => dbRes)
+// 		.catch((err) => console.log(err));
+// });
+
+// pokedex.forEach((pokemon) => {
+// 	const sql = `INSERT INTO pokemon_collected (collection_id, pokemon_id) VALUES ($1, $2);`;
+
+// 	return db
+// 		.query(sql, [1, pokemon.dex_id])
+// 		.then((dbRes) => dbRes)
+// 		.catch((err) => console.log(err));
+// });

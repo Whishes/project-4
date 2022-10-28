@@ -21,12 +21,13 @@ const NewGame = ({ farmId, user_id, setPokemonData, pokemonData }) => {
 				egg_exp: 990,
 			})
 			.then((response) => {
-				const data = response.data;
+				const data = response.data[0];
+				//console.log(data[0]);
 				const egg = {
 					id: data.id,
 					farm_id: data.farm_id,
 					dex_id: 10000,
-					current_exp: 0,
+					current_exp: 990,
 					date_created: data.date_created,
 					date_updated: data.date_updated,
 					name: "egg",
