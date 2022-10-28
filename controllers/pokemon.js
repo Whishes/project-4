@@ -80,12 +80,12 @@ router.post("/", (req, res) => {
 	//console.log("post request on route '/' with body:", req.body);
 	const sessionId = req.session.userid;
 	const bodyId = req.body.user_id;
-	const { farm_id } = req.body;
+	const { farm_id, egg_exp } = req.body;
 	if (!farm_id || !sessionId || bodyId !== sessionId) {
 		res.status(401).send({ message: "Not Authorised" });
 	}
 
-	Pokemon.newEgg(farm_id).then((data) => {
+	Pokemon.newEgg(farm_id, egg_exp).then((data) => {
 		//console.log("return: ", data.rows);
 		return res.status(200).send({ success: true });
 	});

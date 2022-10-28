@@ -11,7 +11,11 @@ const NewGame = ({ farmId, user_id, setPokemonData, pokemonData }) => {
 		setModalIsOpen(false);
 		//console.log("new egg added");
 		axios
-			.post(`/api/pokemon/`, { farm_id: farmId, user_id: user_id })
+			.post(`/api/pokemon/`, {
+				farm_id: farmId,
+				user_id: user_id,
+				egg_exp: 990,
+			})
 			.then((response) => {
 				const data = response.data;
 				const egg = {

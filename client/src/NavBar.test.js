@@ -8,7 +8,6 @@ import { BrowserRouter } from "react-router-dom";
 
 const farmData = {
 	farm_id: 1,
-	currency: 5000,
 	total_c_pm: 0,
 	c_collected: "2022-10-21T06:34:18.507Z",
 	egg_cost: 5000,
@@ -17,7 +16,7 @@ const farmData = {
 test("Nav Bar renders correctly when user isn't logged in", () => {
 	render(
 		<BrowserRouter>
-			<NavBar loggedIn={false} farmData={farmData} />
+			<NavBar loggedIn={false} farmData={farmData} currency={5000} />
 		</BrowserRouter>
 	);
 	const navBars = screen.getByTestId("home-nav");
@@ -27,7 +26,7 @@ test("Nav Bar renders correctly when user isn't logged in", () => {
 test("Nav Bar renders correctly when user is logged in", () => {
 	render(
 		<BrowserRouter>
-			<NavBar loggedIn={true} farmData={farmData} />
+			<NavBar loggedIn={true} farmData={farmData} currency={5000} />
 		</BrowserRouter>
 	);
 	const logOutBtn = screen.getByTestId("logOutBtn");

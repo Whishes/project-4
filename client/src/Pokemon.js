@@ -31,7 +31,7 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 		const newExpValue =
 			pokemon.current_exp !== pokemon.exp_required
 				? getNewExp(pokemon.date_updated, pokemon.exp_required)
-				: pokemon.exp_required;
+				: pokemon.current_exp;
 
 		setLoading(true);
 
@@ -49,10 +49,7 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 					setModalIsOpen(true);
 				})
 				.catch((err) => {
-					console.log(
-						"log ~ file: HomePage.js ~ line 104 ~ axios.patch ~ err",
-						err
-					);
+					console.log(err);
 				});
 		} else {
 			setLoading(false);

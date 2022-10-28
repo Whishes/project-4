@@ -9,11 +9,11 @@ ON f.dex_id = p.dex_id
 	AND f.farm_id = $1;`;
 		return db.query(sql, [farm_id]).then((dbRes) => dbRes);
 	},
-	newEgg: (farm_id) => {
-		const sql = `INSERT INTO pokemon_in_farm(farm_id) 
-VALUES($1) 
+	newEgg: (farm_id, egg_exp = 0) => {
+		const sql = `INSERT INTO pokemon_in_farm(farm_id, current_exp) 
+VALUES($1, $2) 
 RETURNING *`;
-		return db.query(sql, [farm_id]).then((dbRes) => dbRes);
+		return db.query(sql, [farm_id, egg_exp]).then((dbRes) => dbRes);
 	},
 	updateExp: (farm_id, newExp, pokemon_id) => {
 		const sql = `UPDATE pokemon_in_farm

@@ -19,6 +19,10 @@ const farmData = {
 	farm_id: 1,
 };
 
+const user = {
+	id: 1,
+};
+
 const mockData = [
 	{
 		id: 1,
@@ -66,8 +70,19 @@ const mockData = [
 
 test("HomePage component renders correctly", async () => {
 	mockAxios.onGet("/api/pokemon/1").reply(200, []);
-
-	await act(() => render(<HomePage farmData={farmData} />));
+	const setPokemonData = () => {
+		return;
+	};
+	await act(() =>
+		render(
+			<HomePage
+				farmData={farmData}
+				user={user}
+				pokemonData={mockData}
+				setPokemonData={setPokemonData()}
+			/>
+		)
+	);
 	const container = screen.getByTestId("farm-container");
 
 	expect(container).toBeInTheDocument();
@@ -76,7 +91,9 @@ test("HomePage component renders correctly", async () => {
 test("HomePage components render the correct content when no pokemon in farm can be found", async () => {
 	mockAxios.onGet("/api/pokemon/1").reply(200, []);
 
-	await act(() => render(<HomePage farmData={farmData} />));
+	await act(() =>
+		render(<HomePage farmData={farmData} user={user} pokemonData={[]} />)
+	);
 
 	const elderly_man = screen.getByTestId("elderly_man");
 	//expect(mockAxios).toBeInTheDocument();
@@ -86,8 +103,19 @@ test("HomePage components render the correct content when no pokemon in farm can
 
 test("HomePage component renders the correct amount of content when pokemon can be found", async () => {
 	mockAxios.onGet("/api/pokemon/1").reply(200, mockData);
-
-	await act(() => render(<HomePage farmData={farmData} />));
+	const setPokemonData = () => {
+		return;
+	};
+	await act(() =>
+		render(
+			<HomePage
+				farmData={farmData}
+				user={user}
+				pokemonData={mockData}
+				setPokemonData={setPokemonData}
+			/>
+		)
+	);
 	expect(mockAxios.history.get.length).toBe(1);
 
 	const pokemon_cages = screen.getAllByTestId("pokemon-cage");
