@@ -11,12 +11,13 @@ const CollectionRow = ({ data, setShowEntry, setEntryData }) => {
 		<div
 			className={data.collected ? "collection-row collected" : "collection-row"}
 			onClick={() => dexEntry()}
+			data-testid="collection-row"
 		>
 			<div className="row-left">
 				<h3>{data.dex_id}.</h3>
 			</div>
 			<div className="vl" />
-			<div className="row-middle">
+			<div className="row-middle" data-testid="row-middle">
 				{data.collected ? (
 					<>
 						<img src={data.gif_link} alt={data.name}></img>
@@ -29,7 +30,7 @@ const CollectionRow = ({ data, setShowEntry, setEntryData }) => {
 					</>
 				)}
 			</div>
-			<div className="row-right">
+			<div className="row-right" data-testid="row-right">
 				{data.collected ? (
 					<img src={Tick} alt="tick" />
 				) : (

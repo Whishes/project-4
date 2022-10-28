@@ -39,14 +39,16 @@ const Collection = ({ showCollection, setShowCollection, user }) => {
 			className={showCollection ? "collection responsive_nav" : "collection"}
 		>
 			<h1>Collection</h1>
-			<h3>{collectedCount} / 151</h3>
+			<h3>
+				<span data-testid="collection-count">{collectedCount}</span> / 151
+			</h3>
 			<button
 				className="nav-btn nav-close-btn"
 				onClick={() => setShowCollection(false)}
 			>
 				<FaTimes />
 			</button>
-			<div className="collection-container">
+			<div className="collection-container" data-testid="collection-container">
 				{collection &&
 					collection.map((pokemon) => {
 						return (

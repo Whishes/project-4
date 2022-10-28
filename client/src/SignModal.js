@@ -41,7 +41,7 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 			.get(`/api/pokedex/basic`)
 			.then((response) => {
 				const resPokemon = response.data;
-				console.log(resPokemon);
+				//console.log(resPokemon);
 				// update pokemon in farm with dex_id
 				const data = {
 					farm_id: pokemon.farm_id,
@@ -62,7 +62,7 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 						pokemon.exp_required = resPokemon.exp_required;
 						pokemon.date_updated = new Date().toISOString();
 					})
-					.catch((e) => console.log(e));
+					.catch((err) => console.log(err));
 			})
 			.catch((err) => console.log(err));
 	};
@@ -73,21 +73,35 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 			<div className="centered">
 				<div className="sign" data-testid="modal-open">
 					<div className="img-section">
-						<img src={pokemon.img_link} alt={pokemon.name}></img>
+						<img
+							src={pokemon.img_link}
+							alt={pokemon.name}
+							data-testid="pokemon-img"
+						></img>
 					</div>
 					<div className="vl" />
 					<div className="details-section">
-						<h2 className="pokemon-name">{pokemon.name}</h2>
+						<h2 className="pokemon-name" data-testid="pokemon-name">
+							{pokemon.name}
+						</h2>
 						<button className="closeBtn" onClick={() => setModalIsOpen(false)}>
 							<RiCloseLine style={{ marginBottom: "-3px" }} />
 						</button>
 						{barWidth >= 100 && pokemon.evo_pokemon && (
-							<button className="yesBtn" onClick={() => evolvePokemon()}>
+							<button
+								className="yesBtn"
+								onClick={() => evolvePokemon()}
+								data-testid="evolve-button"
+							>
 								Evolve
 							</button>
 						)}
 						{barWidth >= 100 && pokemon.evo_stage === "egg" && (
-							<button className="yesBtn" onClick={() => hatchEgg()}>
+							<button
+								className="yesBtn"
+								onClick={() => hatchEgg()}
+								data-testid="hatch-button"
+							>
 								Hatch
 							</button>
 						)}

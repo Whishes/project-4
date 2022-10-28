@@ -66,7 +66,11 @@ const NewGame = ({ farmId, user_id, setPokemonData, pokemonData }) => {
 							</div>
 							<div className="modalActions">
 								<div className="actionsContainer">
-									<button className="yesBtn" onClick={() => addNewEgg()}>
+									<button
+										className="yesBtn"
+										onClick={() => addNewEgg()}
+										data-testid="yesBtn"
+									>
 										Yes!
 									</button>
 								</div>
@@ -75,7 +79,11 @@ const NewGame = ({ farmId, user_id, setPokemonData, pokemonData }) => {
 					</div>
 				</>
 			) : (
-				<button className="bounce" onClick={() => setModalIsOpen(true)}>
+				<button
+					className="bounce"
+					onClick={() => setModalIsOpen(true)}
+					data-testid="exclamation-button"
+				>
 					<img src={exclamation} alt="exclamation mark"></img>
 				</button>
 			)}

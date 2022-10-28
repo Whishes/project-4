@@ -66,14 +66,29 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 					user_id={user.id}
 				/>
 			)}
-			<img src={back_fence} className="back_fence" alt="back fence"></img>
+			<img
+				src={back_fence}
+				className="back_fence"
+				alt="back fence"
+				data-testid="back-fence"
+			></img>
 			<img
 				src={pokemon.gif_link}
 				alt={pokemon.name}
 				className="pokemon_img"
+				data-testid="fence-pokemon"
 			></img>
-			<img src={front_fence} className="front_fence" alt="front fence"></img>
-			<button className="sign_post" onClick={() => signClick()}>
+			<img
+				src={front_fence}
+				className="front_fence"
+				alt="front fence"
+				data-testid="front-fence"
+			></img>
+			<button
+				className="sign_post"
+				onClick={() => signClick()}
+				data-testid="fence-sign"
+			>
 				<img src={sign_post} alt="sign post"></img>
 			</button>
 			{pokemon.current_exp >= pokemon.exp_required &&
@@ -83,6 +98,7 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 						className="bounce evo_indicator"
 						src={arrow}
 						alt="evolution arrow"
+						data-testid="evo-indicator"
 					></img>
 				)}
 		</div>
