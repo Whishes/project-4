@@ -1,10 +1,16 @@
 import Running from "./images/pikachu-running.gif";
 import Error from "./images/pikachu-error.gif";
 
-const Loading = ({ error = false }) => {
+const Loading = ({ error = false, setError, setLoading }) => {
 	return (
 		<div>
-			<div className="darkBG" />
+			<div
+				className="darkBG"
+				onClick={() => {
+					setLoading(false);
+					setError(false);
+				}}
+			/>
 			<div
 				style={{
 					display: "flex",

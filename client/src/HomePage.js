@@ -27,7 +27,9 @@ const HomePage = ({ user, farmData, pokemonData, setPokemonData }) => {
 
 	return (
 		<div id="farm-container" data-testid="farm-container">
-			{loading && <Loading error={error} />}
+			{loading && (
+				<Loading error={error} setError={setError} setLoading={setLoading} />
+			)}
 
 			{pokemonData.length >= 1 ? (
 				pokemonData.map((pokemon) => {

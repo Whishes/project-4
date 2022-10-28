@@ -113,7 +113,9 @@ const NavBar = ({
 
 	return (
 		<header>
-			{loading && <Loading error={error} />}
+			{loading && (
+				<Loading error={error} setError={setError} setLoading={setLoading} />
+			)}
 			{loggedIn ? (
 				<>
 					<p data-testid="currency-amt">${currency}</p>

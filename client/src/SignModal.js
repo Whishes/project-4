@@ -77,7 +77,9 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 
 	return (
 		<>
-			{loading && <Loading error={error} />}
+			{loading && (
+				<Loading error={error} setError={setError} setLoading={setLoading} />
+			)}
 			<div className="darkBG" onClick={() => setModalIsOpen(false)} />
 			<div className="centered">
 				<div className="sign" data-testid="modal-open">

@@ -35,7 +35,9 @@ const LoginPage = () => {
 
 	return (
 		<div id="login-container" data-testid="login-container">
-			{loading && <Loading error={error} />}
+			{loading && (
+				<Loading error={error} setError={setError} setLoading={setLoading} />
+			)}
 			<h1>Login</h1>
 			<form onSubmit={formSubmit} method="post">
 				<div>

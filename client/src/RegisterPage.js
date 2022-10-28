@@ -37,6 +37,9 @@ const RegisterPage = () => {
 
 	return (
 		<div id="login-container" data-testid="register-container">
+			{loading && (
+				<Loading error={error} setError={setError} setLoading={setLoading} />
+			)}
 			<h1>Register</h1>
 			<form onSubmit={formSubmit} method="post">
 				<div>
@@ -50,7 +53,6 @@ const RegisterPage = () => {
 						data-testid="username-input"
 					></input>
 				</div>
-				{loading && <Loading error={error} />}
 				<div>
 					<label htmlFor="email">Email </label>
 					<input

@@ -51,7 +51,9 @@ const NewGame = ({ farmId, user_id, setPokemonData, pokemonData }) => {
 
 	return (
 		<div id="man-container">
-			{loading && <Loading error={error} />}
+			{loading && (
+				<Loading error={error} setError={setError} setLoading={setLoading} />
+			)}
 			{modalIsOpen ? (
 				<>
 					<div className="darkBG" onClick={() => setModalIsOpen(false)} />

@@ -43,7 +43,9 @@ const Collection = ({ showCollection, setShowCollection, user }) => {
 		<div
 			className={showCollection ? "collection responsive_nav" : "collection"}
 		>
-			{loading && <Loading error={error} />}
+			{loading && (
+				<Loading error={error} setError={setError} setLoading={setLoading} />
+			)}
 			<h1>Collection</h1>
 			<h3>
 				<span data-testid="collection-count">{collectedCount}</span> / 151
