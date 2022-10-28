@@ -7,6 +7,7 @@ import NavBar from "./NavBar";
 import HomePage from "./HomePage";
 import BackgroundImage from "./images/map1.png";
 import TitleScreen from "./TitleScreen";
+import Loading from "./Loading";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -15,11 +16,13 @@ function App() {
 	const [currency, setCurrency] = useState(null);
 	const [storedCurrency, setStoredCurrency] = useState(null);
 	const [pokemonData, setPokemonData] = useState([]);
+	const [loading, setLoading] = useState(false);
 	//
 	useEffect(() => {
 		if (loggedIn) {
 			return;
 		}
+		setLoading(true);
 		axios
 			.get("/api/user")
 			.then((response) => {
@@ -53,10 +56,14 @@ function App() {
 					c_collected: c_collected,
 					egg_cost,
 				});
+				setLoading(false);
 				setLoggedIn(true);
 			})
-			.catch((err) => setLoggedIn(false));
-	});
+			.catch((err) => {
+				setLoading(false);
+				setLoggedIn(false);
+			});
+	}, []);
 	//
 	const backgroundStyles = {
 		backgroundImage: `url(${BackgroundImage})`,
@@ -67,6 +74,7 @@ function App() {
 
 	return (
 		<div className="App" style={backgroundStyles}>
+			{loading && <Loading />}
 			<NavBar
 				user={user}
 				loggedIn={loggedIn}

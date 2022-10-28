@@ -6,6 +6,7 @@ import egg from "./images/egg.png";
 import axios from "axios";
 import { GiLockedChest, GiOpenChest } from "react-icons/gi";
 import Collection from "./Collection";
+import Loading from "./Loading";
 
 const NavBar = ({
 	loggedIn,
@@ -21,6 +22,8 @@ const NavBar = ({
 	//console.log(user);
 	const navRef = useRef();
 	const [showCollection, setShowCollection] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 
 	const showNavBar = () => {
 		navRef.current.classList.toggle("responsive_nav");
@@ -40,16 +43,18 @@ const NavBar = ({
 
 	const moneyClick = () => {
 		const newTotalCurrency = currency + storedCurrency;
+		setLoading(true);
 		axios
 			.patch(`/api/farm/${farmData.farm_id}`, {
 				user_id: user.id,
 				newValue: newTotalCurrency,
 			})
 			.then((response) => {
+				setLoading(false);
 				setStoredCurrency(0);
 				setCurrency(newTotalCurrency);
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => setError(true));
 	};
 
 	const eggClick = () => {
@@ -64,6 +69,7 @@ const NavBar = ({
 
 		if (check) {
 			const newEggCost = parseInt(farmData.egg_cost * 1.2);
+			setLoading(true);
 			axios
 				.post(`api/farm/${farmData.farm_id}`, {
 					user_id: user.id,
@@ -92,11 +98,12 @@ const NavBar = ({
 						exp_required: 1000,
 						currency_pm: 0,
 					};
+					setLoading(false);
 					setCurrency(currency - farmData.egg_cost);
 					farmData.egg_cost = newEggCost;
 					setPokemonData([...pokemonData, egg]);
 				})
-				.catch((err) => console.log(err));
+				.catch((err) => setError(true));
 		}
 	};
 
@@ -106,6 +113,7 @@ const NavBar = ({
 
 	return (
 		<header>
+			{loading && <Loading error={error} />}
 			{loggedIn ? (
 				<>
 					<p data-testid="currency-amt">${currency}</p>

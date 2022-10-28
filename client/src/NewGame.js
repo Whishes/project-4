@@ -3,13 +3,17 @@ import { RiCloseLine } from "react-icons/ri";
 import egg_man from "./images/Egg-man.png";
 import { useState } from "react";
 import axios from "axios";
+import Loading from "./Loading";
 
 const NewGame = ({ farmId, user_id, setPokemonData, pokemonData }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 
 	const addNewEgg = () => {
 		setModalIsOpen(false);
 		//console.log("new egg added");
+		setLoading(true);
 		axios
 			.post(`/api/pokemon/`, {
 				farm_id: farmId,
@@ -39,13 +43,15 @@ const NewGame = ({ farmId, user_id, setPokemonData, pokemonData }) => {
 					exp_required: 1000,
 					currency_pm: 0,
 				};
+				setLoading(false);
 				setPokemonData([...pokemonData, egg]);
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => setError(true));
 	};
 
 	return (
 		<div id="man-container">
+			{loading && <Loading error={error} />}
 			{modalIsOpen ? (
 				<>
 					<div className="darkBG" onClick={() => setModalIsOpen(false)} />

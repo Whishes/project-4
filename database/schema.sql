@@ -20,9 +20,9 @@ CREATE TABLE farm (
     farm_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     currency INT DEFAULT 5000 CHECK (currency >= 0),
-    total_c_pm FLOAT DEFAULT 0,
+    total_c_pm FLOAT DEFAULT 0.2,
     c_collected TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    egg_cost INT DEFAULT 5000
+    egg_cost INT DEFAULT 2500
 );
 
 CREATE TABLE pokemon_in_farm (

@@ -1,8 +1,12 @@
 import "./LoginPage.css";
 import { useState } from "react";
 import axios from "axios";
+import Loading from "./Loading";
 
 const RegisterPage = () => {
+	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(false);
+
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -18,15 +22,16 @@ const RegisterPage = () => {
 			username: username,
 			password: password,
 		};
-
+		setLoading(true);
 		axios
 			.post("/api/user", data)
 			.then(() => {
+				setLoading(false);
 				window.location.href = "/login";
 			})
 			.catch((err) => {
 				//console.log(err);
-				alert(err.response.data.message);
+				setError(true);
 			});
 	};
 
@@ -45,6 +50,7 @@ const RegisterPage = () => {
 						data-testid="username-input"
 					></input>
 				</div>
+				{loading && <Loading error={error} />}
 				<div>
 					<label htmlFor="email">Email </label>
 					<input

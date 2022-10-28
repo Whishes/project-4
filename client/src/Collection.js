@@ -4,8 +4,11 @@ import DexEntry from "./DexEntry";
 import { FaTimes } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "./Loading";
 
 const Collection = ({ showCollection, setShowCollection, user }) => {
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 	const [collection, setCollection] = useState(null);
 	const [collectedCount, setCollectedCount] = useState(0);
 	const [entryData, setEntryData] = useState(null);
@@ -13,6 +16,7 @@ const Collection = ({ showCollection, setShowCollection, user }) => {
 
 	useEffect(() => {
 		if (collection === null) {
+			setLoading(true);
 			axios
 				.get(`/api/collection/${user.id}`)
 				.then((response) => {
@@ -26,11 +30,12 @@ const Collection = ({ showCollection, setShowCollection, user }) => {
 							arr.push({ dex_id: i + 1, collected: false });
 						}
 					}
+					setLoading(false);
 					setCollectedCount(data.length);
 					setCollection([...arr]);
 					//console.log(arr);
 				})
-				.catch((err) => console.log(err));
+				.catch((err) => setError(true));
 		}
 	}, []);
 
@@ -38,6 +43,7 @@ const Collection = ({ showCollection, setShowCollection, user }) => {
 		<div
 			className={showCollection ? "collection responsive_nav" : "collection"}
 		>
+			{loading && <Loading error={error} />}
 			<h1>Collection</h1>
 			<h3>
 				<span data-testid="collection-count">{collectedCount}</span> / 151

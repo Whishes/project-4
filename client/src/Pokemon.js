@@ -7,12 +7,12 @@ import axios from "axios";
 import "./HomePage.css";
 import SignModal from "./SignModal";
 
-const Pokemon = ({ pokemon, user, setLoading }) => {
+const Pokemon = ({ pokemon, user, setLoading, setError }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	// console.log(pokemon);
 	const getNewExp = (inputDate, maxExp) => {
 		//console.log(inputDate);
-		const passiveExpRate = 0.3;
+		const passiveExpRate = 0.4;
 		//
 		const pokemonDate = new Date(inputDate);
 		const currentDate = Date.now();
@@ -49,7 +49,7 @@ const Pokemon = ({ pokemon, user, setLoading }) => {
 					setModalIsOpen(true);
 				})
 				.catch((err) => {
-					console.log(err);
+					setError(true);
 				});
 		} else {
 			setLoading(false);

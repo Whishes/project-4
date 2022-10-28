@@ -1,8 +1,12 @@
 import { RiCloseLine } from "react-icons/ri";
 import "./SignModal.css";
 import axios from "axios";
+import Loading from "./Loading";
+import { useState } from "react";
 
 const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 	//console.log(pokemon);
 	const barWidth =
 		pokemon.current_exp > 0
@@ -15,13 +19,13 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 			user_id: user_id,
 			dex_id: pokemon.evo_pokemon,
 		};
+		setLoading(true);
 		axios
 			.patch(`/api/pokemon/${pokemon.id}`, data)
 			.then((dbRes) => {
 				axios
 					.get(`api/pokedex/${data.dex_id}`)
 					.then((response) => {
-						setModalIsOpen(false);
 						const resPokemon = response.data;
 						pokemon.gif_link = resPokemon.gif_link;
 						pokemon.current_exp = 0;
@@ -30,13 +34,16 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 						pokemon.dex_id = resPokemon.dex_id;
 						pokemon.exp_required = resPokemon.exp_required;
 						pokemon.date_updated = new Date().toISOString();
+						setLoading(false);
+						setModalIsOpen(false);
 					})
-					.catch((err) => console.log(err));
+					.catch((err) => setError(true));
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => setError(true));
 	};
 
 	const hatchEgg = () => {
+		setLoading(true);
 		axios
 			.get(`/api/pokedex/basic`)
 			.then((response) => {
@@ -52,7 +59,6 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 					.patch(`/api/pokemon/${pokemon.id}`, data)
 					.then((dbRes) => {
 						//console.log(dbRes);
-						setModalIsOpen(false);
 						// update frontend state until user reloads page at some point
 						pokemon.gif_link = resPokemon.gif_link;
 						pokemon.current_exp = 0;
@@ -61,14 +67,17 @@ const SignModal = ({ setModalIsOpen, pokemon, user_id }) => {
 						pokemon.dex_id = resPokemon.dex_id;
 						pokemon.exp_required = resPokemon.exp_required;
 						pokemon.date_updated = new Date().toISOString();
+						setLoading(false);
+						setModalIsOpen(false);
 					})
-					.catch((err) => console.log(err));
+					.catch((err) => setError(true));
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => setError);
 	};
 
 	return (
 		<>
+			{loading && <Loading error={error} />}
 			<div className="darkBG" onClick={() => setModalIsOpen(false)} />
 			<div className="centered">
 				<div className="sign" data-testid="modal-open">

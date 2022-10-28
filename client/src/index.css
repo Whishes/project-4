@@ -1,6 +1,7 @@
 :root {
-  --primary-theme: black;
+  --primary-theme: #72CC50;
   --primary-font: #FBFBFB;
+  --primary-error: #ED2939;
 }
 
 * {
