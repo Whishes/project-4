@@ -23,7 +23,8 @@ router.post("/:farmId", (req, res) => {
 		.then((data) => {
 			Pokemon.newEgg(farm_id)
 				.then((response) => {
-					const eggData = response.rows[0];
+					//console.log(response);
+					const eggData = response[0];
 					return res.status(200).send(eggData);
 				})
 				.catch((err) => console.log(err));
