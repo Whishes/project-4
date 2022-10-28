@@ -32,13 +32,26 @@ During this project the technologies that had been used were;
 
 ## Main Features
 - Login/Register
-- 
+- "Raising" Pokemon
+- Evolving pokemon if it's possible to do so
+- Collector's journal to see how many pokemon you've collected and information on that pokemon
+- Collect currency, which is affected by the pokemon you have in the farm, to buy more eggs to eventually hatch
 
 
 ## Ideal/Planned Features: 
 - [ ] Admin control panel
-- [ ] Dark/light mode
-- [ ] 
+- [ ] In-site pokemon editor
+- [ ] Store/market to buy items
+- [ ] Inventory system
+- [ ] Hunger + Happiness system
+- [ ] Individual Farm ranking/Leaderboard
+- [ ] Farm Overview
+- [ ] Custom eggs for each basic type pokemon
+- [ ] See another user's farm
+- [ ] Different ways/Events to obtain Legendary/Mythical pokemon
+- [ ] Different Farm Stages
+- [ ] Different Market levels
+- [ ] Custom sprite work that functions as the navigation instead of the current bar + icons
 
 ## Database Design 
 - See `database/schema.sql`
