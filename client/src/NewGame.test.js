@@ -39,8 +39,8 @@ const mockData = [
 	},
 ];
 
-test("Modal appears when user clicks on exclamation mark button", () => {
-	render(<NewGame />);
+test("Modal appears when user clicks on exclamation mark button", async () => {
+	await act(() => render(<NewGame />));
 
 	const button = screen.getByTestId("exclamation-button");
 	expect(button).toBeInTheDocument();
@@ -50,29 +50,35 @@ test("Modal appears when user clicks on exclamation mark button", () => {
 	expect(modal).toBeInTheDocument();
 });
 
-test("Axios route receives the right data when the modal button is pressed", () => {
+test("Axios route receives the right data when the modal button is pressed", async () => {
 	const setPokemonData = () => {
 		return;
 	};
-	mockAxios.onPost("/api/pokemon/").reply(200, { id: 1, farm_id: 1 });
-	render(
-		<NewGame
-			farmId={1}
-			user_id={1}
-			setPokemonData={setPokemonData}
-			pokemonData={mockData}
-		/>
+	mockAxios
+		.onPost("/api/pokemon/")
+		.reply(200, [
+			{ id: 1, farm_id: 1, date_created: "2022-10-22T03:11:09.728Z", date },
+		]);
+	await act(() =>
+		render(
+			<NewGame
+				farmId={1}
+				user_id={1}
+				setPokemonData={setPokemonData}
+				pokemonData={mockData}
+			/>
+		)
 	);
 
 	const modalButton = screen.getByTestId("exclamation-button");
 	expect(modalButton).toBeInTheDocument();
-	fireEvent.click(modalButton);
+	act(() => fireEvent.click(modalButton));
 
 	const modal = screen.getByTestId("modal-open");
 	expect(modal).toBeInTheDocument();
 
 	const yesBtn = screen.getByTestId("yesBtn");
-	fireEvent.click(yesBtn);
+	act(() => fireEvent.click(yesBtn));
 
 	const data = {
 		farm_id: 1,
