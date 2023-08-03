@@ -7,9 +7,9 @@
 1.  `git clone` with the specific **HTTPS** or **SSH** for this repo.
 2. In the code's folder run the following commands in this order:
 	1. `npm install` in the main & the client folder
-3. If postgreSQL is already installed on your machine, run `psql` then `CREATE DATABASE travel_diary` to create the required database.
+3. If postgreSQL is already installed on your machine, run `psql` then `CREATE DATABASE pokemon_rancher` to create the required database.
 	1. if postgreSQL isn't already installed, follow the appropriate instructions from [here](https://www.postgresql.org/download/) and repeat step 3 when installed.
-4. To create the appropriate tables in the db, run `psql travel_diary < database/schema.sql` in the terminal
+4. To create the appropriate tables in the db, run `psql pokemon_rancher < database/schema.sql` in the terminal
 5. To then seed the pokedex table, open `/database/pokedex.js`, uncomment out the first forEach loop and then run `node database/pokedex.js` in your terminal
 6. Fill out a .env file with the following:
 	1. `EXPRESS_SESSION_SECRET_KEY`
