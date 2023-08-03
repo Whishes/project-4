@@ -1,7 +1,7 @@
 # *Project-4* Pokemon Rancher
 
 ## Can be found at:
-[Link to Project]https://limitless-oasis-74328.herokuapp.com/)
+https://limitless-oasis-74328.herokuapp.com
 
 ## Installation Instructions: 
 1.  `git clone` with the specific **HTTPS** or **SSH** for this repo.
